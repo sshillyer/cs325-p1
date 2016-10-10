@@ -1,11 +1,9 @@
-#!/usr/bin/env python
-
 #CS 325_400_F2016 Project1 - Algo3: Divide and Conquer
 #Jesse Thoren
 
 #MAXSUBHELPER
 #Input: Array of numbers
-#Output: [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftValue, MaxRightValue, TotalSumValue]
+#Output: [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
 def MAXSUBHELPER(a):
     #If length 1 just return the value or index 0 as appropriate.
     if(len(a)==1):
@@ -35,7 +33,7 @@ def MAXSUBHELPER(a):
     MaxSuffixValue = max(right[2], right[7]+left[2])
 
     '''
-    The max sum of a subarray is here. It's either the max sum that's
+    The MSS value is here. It's either the max sum that's
      entirely in the left subarray, the max sum that's entirely in the
      right subarray, or the sum of the suffix of the left and the prefix
      of the right.
@@ -74,13 +72,14 @@ def MAXSUBHELPER(a):
 
     '''
     This sets the left and right indices that bound (inclusively) 
-     the maximum sum subarray. In case that it's entirely contained in
-     the left subarray, we take both bounds from the left subarray. In case
-     it's entirely in the right subarray, this becomes the bounds of the
-     maximum sum in the right subarray, adjusted for the elements added
-     when joining with the left subarray. In case that the maximum sum
-     subarray is formed by joining a suffix of the left subarray and
-     a prefix of the right subarray, this is formed by setting
+     the MSS. 
+     In case that it's entirely contained in the left
+     subarray, we take both bounds from the left subarray. 
+     In case it's entirely in the right subarray, this becomes 
+     the bounds of the maximum sum in the right subarray, 
+     adjusted for the elements added when joining with the left subarray. 
+     In case that the MSS is formed by joining a suffix of the left 
+     subarray and a prefix of the right subarray, this is formed by setting
      MaxLeftIndex as MaxSuffixStartIndex in the left subarray and
      MaxRightIndex as MaxPrefixEndIndex in the right subarray... adjusted
      for the elements added in joining the left and right subarrays.
@@ -103,22 +102,24 @@ def MAXSUBHELPER(a):
 
 #MAXSUBARRAY
 #Input: Array of numbers
-#Output: [The maximum sum subarray, The sum of the maximum sum subarray]
+#Output: Sum of the MSS, left index of the MSS, right index of the MSS
 def MAXSUBARRAY(sumArray):
     helperRes = MAXSUBHELPER(sumArray)
-    '''
-    This returns the original array spliced to the bounds of the maximum
-     sum subarray returned by the helper function, and the actual
-     maximum sum of the maximum sum subarray
-    '''
-    return [sumArray[helperRes[5]:helperRes[6]+1], helperRes[4]]
+    return helperRes[4], helperRes[5], helperRes[6]
 
 #Input
 user_input = input("Enter an array: ")
+for char in user_input:
+    if char in " []":
+        user_input = user_input.replace(char,'')
+user_input = user_input.split(',')
+for i in range(0,len(user_input)):
+    user_input[i] = int(user_input[i])
 
 #Output/Function call
-output = MAXSUBARRAY(user_input)
+res, start, end = MAXSUBARRAY(user_input)
 
 #Display results
-print "Max Subarray: ", output[0]
-print "Max Subarray Sum: ", output[1]
+print("MSS: " + str(res))
+print("MSS Left Index: " + str(start))
+print("MSS Right Index: " + str(end))
