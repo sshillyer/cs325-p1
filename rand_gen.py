@@ -20,33 +20,32 @@ def rand_gen(num_elements = 100):
     return arr
 
 
-def time_alg(alg, arr):
+def time_alg(alg, arr, cycles):
     '''
-    Executes an algorithm's execution 10 times and returns the
+    Executes an algorithm's execution _cycles_ times and returns the
      elapsed time, in seconds.
     '''
     import timeit
 
     elapsed_time = 0
 
-    for i in range(10):
+    for i in range(cycles):
         start = timeit.default_timer()
-        alg(arr)
+        alg(arr[i])
         stop = timeit.default_timer()
         elapsed_time += stop - start
 
     return elapsed_time
 
 ITERATIONS = 10
-random.seed()
+#random.seed()
+random.SystemRandom()
 arrs = []
 for i in range(ITERATIONS):
     arrs.append(rand_gen())
 
 print('Timing algorithm 1 on ten arrays of size 100.')
-elapsed_time = 0
-for i in range(ITERATIONS):
-    elapsed_time += time_alg(print, arrs[i])
+elapsed_time = time_alg(print, arrs, ITERATIONS)
 
 print('Total time: ' + str(elapsed_time) + ' seconds')
 print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
