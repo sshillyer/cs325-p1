@@ -10,12 +10,15 @@ def rand_gen(num_elements = 100):
     MIN_VALUE = -100
     at_least_one_positive = False
 
-    while not at_least_one_positive:
-        arr = []
-        for i in range(num_elements):
-            arr.append(random.randint(MIN_VALUE, MAX_VALUE))
-            if arr[i] > 0:
+
+    arr = []
+    for i in range(num_elements):
+        arr.append(random.randint(MIN_VALUE, MAX_VALUE))
+        if arr[i] > 0:
                 at_least_one_positive = True
+    if not at_least_one_positive:
+        random_index = random.randint(0, num_elements - 1)
+        arr[random_index] = abs(arr[random_index])
 
     return arr
 
