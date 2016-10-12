@@ -1,5 +1,5 @@
 #CS 325_400_F2016 Project1 - Algo3: Divide and Conquer
-#Jesse Thoren
+# Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 #MAXSUBHELPER
 #Input: Array of numbers
@@ -95,12 +95,12 @@ def MAXSUBHELPER(a):
 
     '''
     This returns all of the important values to the recursive call,
-     or, ultimately, back to MAXSUBARRAY
+     or, ultimately, back to mss_enumerative
     '''
     return [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
 
 
-#MAXSUBARRAY
+#mss_enumerative
 #Input: Array of numbers
 #Output: Sum of the MSS, left index of the MSS, right index of the MSS
 def MAXSUBARRAY(sumArray):

@@ -1,7 +1,7 @@
 #CS 325_400_F2016 Project1 - Algo2: Better Enumeration
-#Jesse Thoren
+# Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#MAXSUBARRAY
+#mss_enumerative
 #Input: Array of numbers
 #Output: Sum of the MSS, left index of the MSS, right index of the MSS
 def MAXSUBARRAY(sumArray):
