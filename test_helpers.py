@@ -4,16 +4,18 @@
 import random
 
 
-# write_results_to_file
-# @a: array of integers
-# @mass_firstt: index of start of the maximum sum subbary
-# @mass_last: index of start of the maximum sum subbary
-# @result: The sum of the mss
-# @filename: FIlename to output results
-# @write_mode: The file write mode to use ("a" = append, etc., same as file.open() arg2
-# Output: Writes original array and the subarray from mss_first to mss_last
-#         with labels. Appends if write_mode is "a", otherwise overwrites file
 def write_results_to_file(a, mss_first, mss_last, result, filename ="test", write_mode ="w"):
+    '''
+    Writes original array and the subarray from mss_first to mss_last
+        with labels. Appends if write_mode is "a", otherwise overwrites file
+    :param a: array of integers
+    :param mss_first: index of start of the maximum sum subbary
+    :param mss_last: index of start of the maximum sum subbary
+    :param result: The sum of the mss
+    :param filename: FIle name to output results
+    :param write_mode: The file write mode to use ("a" = append, etc., same as file.open() arg2
+    :return:
+    '''
     n = len(a)
     f = open(filename, write_mode)
 
@@ -31,12 +33,17 @@ def write_results_to_file(a, mss_first, mss_last, result, filename ="test", writ
 
     f.close()
 
-# writes a[m..n] to file f with an opening and closing [ ], comma delimited
-# @f: filename to write to
-# @a: array to read values from
-# @m: index of starting element of array
-# @n: index of last element of array
+
+
 def write_array(f, a, m, n):
+    '''
+    writes a[m..n] to file f with an opening and closing [ ], comma delimited
+    :param f: filename to write to
+    :param a: array to read values from
+    :param m: index of starting element of array
+    :param n: index of last element of array
+    :return:
+    '''
     f.write("[")
     for i in range(m, n - 1):
         f.write(str(a[i]))
@@ -45,30 +52,25 @@ def write_array(f, a, m, n):
     f.write("]\n")
 
 
-
-
-
-
-
-def build_random_array(num_elements = 100):
+def build_random_array(size = 100):
     '''
-    Returns an array of random small integers containing at least one
-     positive value.
+    Returns an array of random small integers
+    :param size: Size of array
+    :return:
     '''
-
     MAX_VALUE = 100
     MIN_VALUE = -100
     at_least_one_positive = False
 
 
     arr = []
-    for i in range(num_elements):
+    for i in range(size):
         arr.append(random.randint(MIN_VALUE, MAX_VALUE))
         if arr[i] > 0:
                 at_least_one_positive = True
 
     if not at_least_one_positive:
-        random_index = random.randint(0, num_elements - 1)
+        random_index = random.randint(0, size - 1)
         arr[random_index] = abs(arr[random_index])
 
     return arr
@@ -77,7 +79,11 @@ def build_random_array(num_elements = 100):
 def time_alg(alg, arr, cycles):
     '''
     Executes an algorithm's execution _cycles_ times and returns the
-     elapsed time, in seconds.
+        elapsed time, in seconds.
+    :param alg: Function to time
+    :param arr: Array to pass to alg
+    :param cycles: Number of times to execute the function
+    :return:
     '''
     import timeit
 
@@ -91,15 +97,15 @@ def time_alg(alg, arr, cycles):
 
     return elapsed_time
 
-ITERATIONS = 10
-#random.seed()
-random.SystemRandom()
-arrs = []
-for i in range(ITERATIONS):
-    arrs.append(build_random_array())
-
-print('Timing algorithm 1 on ten arrays of size 100.')
-elapsed_time = time_alg(print, arrs, ITERATIONS)
-
-print('Total time: ' + str(elapsed_time) + ' seconds')
-print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
+# ITERATIONS = 10
+# #random.seed()
+# random.SystemRandom()
+# arrs = []
+# for i in range(ITERATIONS):
+#     arrs.append(build_random_array())
+#
+# print('Timing algorithm 1 on ten arrays of size 100.')
+# elapsed_time = time_alg(print, arrs, ITERATIONS)
+#
+# print('Total time: ' + str(elapsed_time) + ' seconds')
+# print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
