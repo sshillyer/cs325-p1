@@ -1,31 +1,6 @@
-# Algorithm 1: Enumeration.
-# Description: Loop over each pair of indices i, j and compute the sum from k=i to j for A[k]
-# Keep the best sum you have found so far.
 
-# @a: Array: some array of integers including at least one positive value
-# @n: integer: size of the array  (probably just grab this from A.length or whatever?)
-def mssEnumerative(a):
-    n = len(a)
-
-    # Return values
-    bestSum = -99999999                 # stores the highest MSS found so far
-        #TODO: Should we assume it's 0 to start or some big negative number?
-    bestSumStartIndex = 0       # stores the index of the starting element of the current best MSS
-    bestSumEndIndex = 0         # stores the index of the last element of the current best MSS
-
-    # Enumerating nested loops to calculate best sums so far
-    for i in range(0, n):       # start at each element in the array and calculate all sums
-        for j in range (i, n):  # Calculate the sum from i to j, for j = i to end of array
-            sumCandidate = 0
-            for k in range (i, j+1):
-                sumCandidate = sumCandidate + a[k]
-
-            if sumCandidate > bestSum:
-                bestSum = sumCandidate
-                bestSumStartIndex = i
-                bestSumEndIndex = j
-
-    return bestSum, bestSumStartIndex, bestSumEndIndex
+#CS 325_400_F2016 Project1 - Algo1: Enumeration
+# Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 
 # Algorithm 2: Better Enumeration

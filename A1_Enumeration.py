@@ -5,17 +5,23 @@
 #Input: Array of numbers
 #Output: Sum of the MSS, left index of the MSS, right index of the MSS
 def mss_enumerative(a):
+    '''
+
+    :param a: Array of integers consisting of at least one positive value
+    :return:
+    '''
+
     #Initialize to the first element in the input array
     max_sum = a[0]    # Stores the sum of the MSS
     max_i = 0                # Stores the lower bound of the MSS
     max_j = 0 #Stores the upper bound of the MSS
-    array_len = len(a) #Stores the length of the input array
+    n = len(a) #Stores the length of the input array
     
     #i: Lower Bound for sum
-    for i in range(0,array_len):
+    for i in range(0,n):
 
         #j: Upper Bound for sum
-        for j in range(i,array_len):
+        for j in range(i,n):
 
             #Stores the sum of the subarray from index i to j inclusive
             #Initialized to the first element to be summed
