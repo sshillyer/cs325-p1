@@ -1,10 +1,10 @@
 #CS 325_400_F2016 Project1 - Algo3: Divide and Conquer
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#mss_recur_helper
+#mss_divconq_helper
 #Input: Array of numbers
 #Output: [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
-def mss_recur_helper(a):
+def mss_divconq_helper(a):
     #If length 1 just return the value or index 0 as appropriate.
     if(len(a)==1):
         return [a[0], 0, a[0], 0, a[0], 0, 0, a[0]]
@@ -13,8 +13,8 @@ def mss_recur_helper(a):
     middle = len(a)//2
 
     #Get result of recursion from left and right halves
-    left = mss_recur_helper(a[:middle])
-    right = mss_recur_helper(a[middle:])
+    left = mss_divconq_helper(a[:middle])
+    right = mss_divconq_helper(a[middle:])
 
     '''
     The max prefix value is either the same as the max prefix of the 
@@ -103,23 +103,23 @@ def mss_recur_helper(a):
 #mss_enumerative
 #Input: Array of numbers
 #Output: Sum of the MSS, left index of the MSS, right index of the MSS
-def MAXSUBARRAY(sumArray):
-    helperRes = mss_recur_helper(sumArray)
+def mss_divconq(sumArray):
+    helperRes = mss_divconq_helper(sumArray)
     return helperRes[4], helperRes[5], helperRes[6]
 
 #Input
-user_input = input("Enter an array: ")
-for char in user_input:
-    if char in " []":
-        user_input = user_input.replace(char,'')
-user_input = user_input.split(',')
-for i in range(0,len(user_input)):
-    user_input[i] = int(user_input[i])
-
-#Output/Function call
-res, start, end = MAXSUBARRAY(user_input)
-
-#Display results
-print("MSS: " + str(res))
-print("MSS Left Index: " + str(start))
-print("MSS Right Index: " + str(end))
+# user_input = input("Enter an array: ")
+# for char in user_input:
+#     if char in " []":
+#         user_input = user_input.replace(char,'')
+# user_input = user_input.split(',')
+# for i in range(0,len(user_input)):
+#     user_input[i] = int(user_input[i])
+#
+# #Output/Function call
+# res, start, end = mss_divconq(user_input)
+#
+# #Display results
+# print("MSS: " + str(res))
+# print("MSS Left Index: " + str(start))
+# print("MSS Right Index: " + str(end))

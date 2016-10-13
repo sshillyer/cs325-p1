@@ -21,11 +21,11 @@ def write_results_to_file(a, mss_first, mss_last, result, filename ="test", writ
 
     # Write original array to file
     f.write("Original Array:\n")
-    write_array(f, a, 0, n)
+    write_array_to_file(f, a, 0, n)
 
     # Write the MSS array to the file
     f.write("Maximum Sum Subarray:\n")
-    write_array(f, a, mss_first, mss_last)
+    write_array_to_file(f, a, mss_first, mss_last)
 
     # Write result to the file
     f.write("Maxiumum Sum:\n")
@@ -35,7 +35,7 @@ def write_results_to_file(a, mss_first, mss_last, result, filename ="test", writ
 
 
 
-def write_array(f, a, m, n):
+def write_array_to_file(f, a, m, n):
     '''
     writes a[m..n] to file f with an opening and closing [ ], comma delimited
     :param f: filename to write to
