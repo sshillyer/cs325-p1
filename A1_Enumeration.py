@@ -1,14 +1,12 @@
 #CS 325_400_F2016 Project1 - Algo1: Enumeration
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#mss_enumerative
-#Input: Array of numbers
-#Output: Sum of the MSS, left index of the MSS, right index of the MSS
+
 def mss_enumerative(a):
     '''
-
+    Determines the maximum sum subarray of the array a
     :param a: Array of integers consisting of at least one positive value
-    :return:
+    :return: Sum of the MSS, left index of the MSS, right index of the MSS
     '''
 
     #Initialize to the first element in the input array

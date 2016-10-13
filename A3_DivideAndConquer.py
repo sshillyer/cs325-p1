@@ -1,10 +1,10 @@
 #CS 325_400_F2016 Project1 - Algo3: Divide and Conquer
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#MAXSUBHELPER
+#mss_recur_helper
 #Input: Array of numbers
 #Output: [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
-def MAXSUBHELPER(a):
+def mss_recur_helper(a):
     #If length 1 just return the value or index 0 as appropriate.
     if(len(a)==1):
         return [a[0], 0, a[0], 0, a[0], 0, 0, a[0]]
@@ -13,8 +13,8 @@ def MAXSUBHELPER(a):
     middle = len(a)//2
 
     #Get result of recursion from left and right halves
-    left = MAXSUBHELPER(a[:middle])
-    right = MAXSUBHELPER(a[middle:])
+    left = mss_recur_helper(a[:middle])
+    right = mss_recur_helper(a[middle:])
 
     '''
     The max prefix value is either the same as the max prefix of the 
@@ -104,7 +104,7 @@ def MAXSUBHELPER(a):
 #Input: Array of numbers
 #Output: Sum of the MSS, left index of the MSS, right index of the MSS
 def MAXSUBARRAY(sumArray):
-    helperRes = MAXSUBHELPER(sumArray)
+    helperRes = mss_recur_helper(sumArray)
     return helperRes[4], helperRes[5], helperRes[6]
 
 #Input

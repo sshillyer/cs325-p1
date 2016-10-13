@@ -8,6 +8,7 @@ def mss_better_enum(a):
     :param a:  Array of integers consisting of at least one positive integer
     :return: Sum of the MSS, left index of the MSS, right index of the MSS
     '''
+
     #Initialize to the first element in the input array
     max_sum = a[0] #Stores the sum of the MSS
     max_i = 0 #Stores the lower bound of the MSS
