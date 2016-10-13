@@ -4,6 +4,7 @@
 import random
 
 
+
 def write_results_to_file(a, mss_first, mss_last, result, filename ="test", write_mode ="w"):
     '''
     Writes original array and the subarray from mss_first to mss_last
@@ -51,12 +52,26 @@ def write_array_to_file(f, a, m, n):
     f.write(str(a[n - 1]))
     f.write("]\n")
 
+
+
 def write_test_header_to_file(filename, label, border):
+    '''
+    Writes a header to an ascii file
+    :param filename: File to write to
+    :param label: ASCII text to write
+    :param border: Border to print; if null, won't print
+    :return:
+    '''
     f = open(filename, "a")
-    f.write(border + "\n")
+    if border:
+        f.write(border + "\n")
     f.write(label + "\n")
-    f.write(border + "\n\n")
+    if border:
+        f.write(border + "\n")
+    f.write("\n")
     f.close()
+
+
 
 def build_random_array(size = 100):
     '''

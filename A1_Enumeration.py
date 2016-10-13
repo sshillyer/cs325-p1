@@ -2,6 +2,7 @@
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 
+
 def mss_enumerative(a):
     '''
     Determines the maximum sum subarray of the array a
@@ -29,7 +30,7 @@ def mss_enumerative(a):
             for k in range(i+1,j+1):
                 curr_sum += a[k]
             
-            #If a new max_sum is found, update max_sum, max_i, maxj
+            #If a new max_sum is found, update max_sum, max_i, max_j
             if curr_sum > max_sum:
                 max_sum = curr_sum
                 max_i = i
@@ -37,6 +38,10 @@ def mss_enumerative(a):
 
     return max_sum, max_i, max_j
 
+
+
+
+# TODO: USE THIS AS BASIS FOR PARSING FILE INPUT
 # #Input
 # user_input = input("Enter an array: ")
 # for char in user_input:
@@ -49,3 +54,5 @@ def mss_enumerative(a):
 # #Output/Function call
 # res, start, end = mss_enumerative(user_input)
 #
+
+# EOF

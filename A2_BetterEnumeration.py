@@ -2,6 +2,7 @@
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 
+
 def mss_better_enum(a):
     '''
     Determines the maximum sum subarray of the array a
@@ -34,23 +35,4 @@ def mss_better_enum(a):
 
     return max_sum, max_i, max_j
 
-
-
-
-#Input
-# user_input = input("Enter an array: ")
-# for char in user_input:
-#     if char in " []":
-#         user_input = user_input.replace(char,'')
-# user_input = user_input.split(',')
-# for i in range(0,len(user_input)):
-#     user_input[i] = int(user_input[i])
-# print(user_input);
-
-#Output/Function call
-# res, start, end = mss_better_enum(user_input);
-
-#Display results
-# print("MSS: " + str(res))
-# print("MSS Left Index: " + str(start))
-# print("MSS Right Index: " + str(end))
+# EOF

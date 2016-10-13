@@ -1,10 +1,14 @@
 #CS 325_400_F2016 Project1 - Algo3: Divide and Conquer
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#mss_divconq_helper
-#Input: Array of numbers
-#Output: [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
+
+
 def mss_divconq_helper(a):
+    '''
+    Helper function for mss_divconq
+    :param a: Array of values
+    :return: [max_prefix_value, max_prefix_end_index, max_suffix_value, max_suffix_start_index, max_sum_value, max_left_index, max_right_index, total_sum_value]
+    '''
     #If length 1 just return the value or index 0 as appropriate.
     if(len(a)==1):
         return [a[0], 0, a[0], 0, a[0], 0, 0, a[0]]
@@ -22,7 +26,7 @@ def mss_divconq_helper(a):
      it holds the entirety of left subarray and the max prefix of
      the right subarray.
     '''
-    MaxPrefixValue = max(left[0], left[7]+right[0])
+    max_prefix_value = max(left[0], left[7]+right[0])
 
     '''
     The max suffix value is either the same as the max suffix of the
@@ -30,7 +34,7 @@ def mss_divconq_helper(a):
      it holds the entirety of the right subarray and the max suffix
      of the left subarray
     '''
-    MaxSuffixValue = max(right[2], right[7]+left[2])
+    max_suffix_value = max(right[2], right[7]+left[2])
 
     '''
     The MSS value is here. It's either the max sum that's
@@ -38,14 +42,14 @@ def mss_divconq_helper(a):
      right subarray, or the sum of the suffix of the left and the prefix
      of the right.
     '''
-    MaxSumValue = max(left[4], right[4], left[2]+right[0])
+    max_sum_value = max(left[4], right[4], left[2]+right[0])
 
     '''
     This stores the total sum of all elements in the array. It's useful
      for calculating referencing when calculating the max prefix and
      suffix values above.
     '''
-    TotalSumValue = left[7] + right[7]
+    total_sum_value = left[7] + right[7]
 
     '''
     This sets the Max Prefix end index. It's initialized to the same
@@ -55,9 +59,9 @@ def mss_divconq_helper(a):
      except we adjust by adding middle to account for all elements of the
      left subarray.
     '''
-    MaxPrefixEndIndex = left[1]
-    if(MaxPrefixValue == left[7]+right[0]):
-        MaxPrefixEndIndex = middle + right[1]
+    max_prefix_end_index = left[1]
+    if(max_prefix_value == left[7]+right[0]):
+        max_prefix_end_index = middle + right[1]
 
     '''
     This sets the Max Suffix start index. It's initialize to the the max
@@ -66,9 +70,9 @@ def mss_divconq_helper(a):
      max suffix start index of the left subarray if the max suffix extends
      into the left subarray.
     '''
-    MaxSuffixStartIndex = middle + right[3]
-    if(MaxSuffixValue == right[7]+left[2]):
-        MaxSuffixStartIndex = left[3]
+    max_suffix_start_index = middle + right[3]
+    if(max_suffix_value == right[7]+left[2]):
+        max_suffix_start_index = left[3]
 
     '''
     This sets the left and right indices that bound (inclusively) 
@@ -80,46 +84,34 @@ def mss_divconq_helper(a):
      adjusted for the elements added when joining with the left subarray. 
      In case that the MSS is formed by joining a suffix of the left 
      subarray and a prefix of the right subarray, this is formed by setting
-     MaxLeftIndex as MaxSuffixStartIndex in the left subarray and
-     MaxRightIndex as MaxPrefixEndIndex in the right subarray... adjusted
+     max_left_index as max_suffix_start_index in the left subarray and
+     max_right_index as max_prefix_end_index in the right subarray... adjusted
      for the elements added in joining the left and right subarrays.
     '''
-    MaxLeftIndex = left[5] 
-    MaxRightIndex = left[6]
-    if(MaxSumValue == right[4]):
-        MaxLeftIndex = middle + right[5]
-        MaxRightIndex = middle + right[6]
-    if(MaxSumValue == left[2]+right[0]):
-        MaxLeftIndex = left[3]
-        MaxRightIndex = middle+right[1]
+    max_left_index = left[5]
+    max_right_index = left[6]
+    if(max_sum_value == right[4]):
+        max_left_index = middle + right[5]
+        max_right_index = middle + right[6]
+    if(max_sum_value == left[2]+right[0]):
+        max_left_index = left[3]
+        max_right_index = middle+right[1]
 
     '''
     This returns all of the important values to the recursive call,
      or, ultimately, back to mss_enumerative
     '''
-    return [MaxPrefixValue, MaxPrefixEndIndex, MaxSuffixValue, MaxSuffixStartIndex, MaxSumValue, MaxLeftIndex, MaxRightIndex, TotalSumValue]
+    return [max_prefix_value, max_prefix_end_index, max_suffix_value, max_suffix_start_index, max_sum_value, max_left_index, max_right_index, total_sum_value]
 
 
-#mss_enumerative
-#Input: Array of numbers
-#Output: Sum of the MSS, left index of the MSS, right index of the MSS
-def mss_divconq(sumArray):
-    helperRes = mss_divconq_helper(sumArray)
-    return helperRes[4], helperRes[5], helperRes[6]
 
-#Input
-# user_input = input("Enter an array: ")
-# for char in user_input:
-#     if char in " []":
-#         user_input = user_input.replace(char,'')
-# user_input = user_input.split(',')
-# for i in range(0,len(user_input)):
-#     user_input[i] = int(user_input[i])
-#
-# #Output/Function call
-# res, start, end = mss_divconq(user_input)
-#
-# #Display results
-# print("MSS: " + str(res))
-# print("MSS Left Index: " + str(start))
-# print("MSS Right Index: " + str(end))
+def mss_divconq(a):
+    '''
+    Divide and conquer version of MSS function
+    :param a: Array of numbers
+    :return: Sum of the MSS, left index of the MSS, right index of the MSS
+    '''
+    helper_res = mss_divconq_helper(a)
+    return helper_res[4], helper_res[5], helper_res[6]
+
+# EOF

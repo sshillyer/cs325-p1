@@ -1,10 +1,15 @@
 #CS 325_400_F2016 Project1 - Algo4: Linear Time
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-#mss_enumerative
-#Input: Array of numbers
-#Output: Sum of the MSS, left index of the MSS, right index of the MSS
+
+
 def mss_linear(a):
+    '''
+    Linear version of MSS algorithm
+    :param a: Array of numbers
+    :return: Sum of the MSS, left index of the MSS, right index of the MSS
+    '''
+
     #Initialize to the first element in the input array
     max_sum = a[0] #Stores the sum of the MSS
     max_i = 0 #Stores the lower bound of the MSS
@@ -31,19 +36,4 @@ def mss_linear(a):
 
     return max_sum, max_i, max_j
 
-# #Input
-# user_input = input("Enter an array: ")
-# for char in user_input:
-#     if char in " []":
-#         user_input = user_input.replace(char,'')
-# user_input = user_input.split(',')
-# for i in range(0,len(user_input)):
-#     user_input[i] = int(user_input[i])
-#
-# #Output/Function call
-# res, start, end = mss_linear(user_input);
-#
-# #Display results
-# print("MSS: " + str(res))
-# print("MSS Left Index: " + str(start))
-# print("MSS Right Index: " + str(end))
+# EOF
