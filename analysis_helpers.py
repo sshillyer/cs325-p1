@@ -25,7 +25,7 @@ def write_results_to_file(a, mss_first, mss_last, result, filename ="test", writ
 
     # Write the MSS array to the file
     f.write("Maximum Sum Subarray:\n")
-    write_array_to_file(f, a, mss_first, mss_last)
+    write_array_to_file(f, a, mss_first, mss_last+1)
 
     # Write result to the file
     f.write("Maxiumum Sum:\n")
@@ -51,6 +51,12 @@ def write_array_to_file(f, a, m, n):
     f.write(str(a[n - 1]))
     f.write("]\n")
 
+def write_test_header_to_file(filename, label, border):
+    f = open(filename, "a")
+    f.write(border + "\n")
+    f.write(label + "\n")
+    f.write(border + "\n\n")
+    f.close()
 
 def build_random_array(size = 100):
     '''

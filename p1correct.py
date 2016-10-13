@@ -9,11 +9,9 @@ from A3_DivideAndConquer import *
 from A4_LinearTime import *
 
 
-def run_algorithm_test(alg, test_arrays, expected_results, filename):
-    for test_array, expected in zip(test_arrays, expected_results):
+def run_algorithm_test(alg, test_arrays, filename):
+    for test_array in test_arrays:
         result, start, end = alg(test_array)
-        print("test_array: " + str(result) + ".\t Expected: " + str(expected))
-        print("Start index: " + str(start) + "\tEnd Index: " + str(end))
         write_results_to_file(test_array, start, end, result, filename, "a")
 
 
@@ -26,66 +24,30 @@ test_arrays = [
     ]
 expected_results = [34, 30, 50]
 
-filename = "test.txt"
+out_filename = "test.txt"
+# out_filename = "MSS_Results.txt"  #TODO Uncomment this line once we're sure it's working
+border = "=" * 40
 
 # Run algorithm 1 and append results to filename
-run_algorithm_test(mss_enumerative, test_arrays, expected_results, filename)
+write_test_header_to_file(out_filename, "Algorithm 1: Enumeration", border)
+run_algorithm_test(mss_enumerative, test_arrays, out_filename)
+
 
 # Run algorithm 2 and append results to filename
-run_algorithm_test(mss_better_enum, test_arrays, expected_results, filename)
+write_test_header_to_file(out_filename, "Algorithm 2: Better Enumeration", border)
+run_algorithm_test(mss_better_enum, test_arrays, out_filename)
 
 # Run algorithm 3 and append results to filename
-run_algorithm_test(mss_divconq, test_arrays, expected_results, filename)
+write_test_header_to_file(out_filename, "Algorithm 3: Divide & Conquer", border)
+run_algorithm_test(mss_divconq, test_arrays, out_filename)
 
 # Run algorithm 4 and append results to filename
-run_algorithm_test(mss_better_enum, test_arrays, expected_results, filename)
-
-
-
-# # Algorithm 2: Better Enumeration
-# def mssBetterEnumeration(a):
-#     n = len(a)
-#
-#     # Return values
-#     bestSum = -99999999                 # stores the highest MSS found so far
-#     bestSumStartIndex = 0       # stores the index of the starting element of the current best MSS
-#     bestSumEndIndex = 0         # stores the index of the last element of the current best MSS
-#
-#     # Enumerating nested loops to calculate best sums so far
-#     for i in range(0, n):       # start at each element in the array and calculate all sums
-#         priorSum = 0
-#         for j in range (i, n):  # Calculate the sum from i to j, for j = i to end of array
-#             sumCandidate = priorSum + a[j]
-#             priorSum = sumCandidate
-#
-#             if sumCandidate > bestSum:
-#                 bestSum = sumCandidate
-#                 bestSumStartIndex = i
-#                 bestSumEndIndex = j
-#
-#     return bestSum, bestSumStartIndex, bestSumEndIndex
+write_test_header_to_file(out_filename, "Algorithm 4: Linear-Time", border)
+run_algorithm_test(mss_linear, test_arrays, out_filename)
 
 
 
 
-# Run test on each of the values in the array of inputs
-# for v in testValuesRecur:
-#     start = timeit.default_timer()
-#
-#     for i in range(numTests):
-#         recursiveFib(v)
-#
-#     stop = timeit.default_timer()
-#     totalTime = stop - start
-#     averageTime = totalTime / numTests
-#     print(str(v) + "," + str(averageTime))
-#
-#     f.write(str(v) + "," + str(averageTime) + "\n")
-# f.close()
-
-
-#
-#
 # test_array = [1, 4, -9, 8, 1, 3, 3, 1, -1, -4, -6, 2, 8, 19, -10, -11]
 # expected = 34
 # result, start, end = mssEnumerative(test_array)
