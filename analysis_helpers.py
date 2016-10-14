@@ -142,6 +142,20 @@ def time_alg(alg, arr, cycles):
 
     return elapsed_time
 
+def get_array_of_n_values(first, step_size, qty):
+    '''
+    Return an array of values starting at value first, incrementing by step_size, consisting of exactly qty elements
+    Note: THis is used to generate the various values of 'n' to pass to the algorithms
+    :param first: Value of the first element of the array
+    :param step_size: Value to increment by for each value
+    :param qty: Number of values to generate
+    :return: Array of values array[start, start+step_size, start+step_size*2, start+step_size+3, .., start+step_size*qty]
+    '''
+    last = first + (qty * step_size)
+    array = range(first, last, step_size)
+    return array
+
+
 # ITERATIONS = 10
 # #random.seed()
 # random.SystemRandom()

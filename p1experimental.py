@@ -8,16 +8,8 @@ from A3_DivideAndConquer import *
 from A4_LinearTime import *
 import sys
 
-def set_n_values(start, step_size, qty):
-    start = start
-    step = step_size
-    qty = qty
-    stop = start + (qty * step)
-    return start, stop, step
 
-start, stop, step = set_n_values(10, 5, 20)
-alg_1_n_values = range(start, stop, step)
-
+alg_1_n_values = get_array_of_n_values(10, 5, 20)
 print(alg_1_n_values)
 for v in alg_1_n_values:
     print(v)
