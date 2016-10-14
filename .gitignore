@@ -95,3 +95,6 @@ modules.xml
 *.iml
 vcs.xml
 workspace.xml
+
+# idea
+.idea/
