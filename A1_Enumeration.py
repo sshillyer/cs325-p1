@@ -2,32 +2,31 @@
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 
-
 def mss_enumerative(a):
     '''
-    Determines the maximum sum subarray of the array a
-    :param a: Array of integers consisting of at least one positive value
-    :return: Sum of the MSS, left index of the MSS, right index of the MSS
+    Determines the maximum sum subarray of the array a.
+    :param a: array of integers consisting of at least one positive value
+    :return: sum of the MSS, left index of the MSS, right index of the MSS
     '''
 
     #Initialize to the first element in the input array
-    max_sum = a[0]    # Stores the sum of the MSS
-    max_i = 0                # Stores the lower bound of the MSS
-    max_j = 0 #Stores the upper bound of the MSS
-    n = len(a) #Stores the length of the input array
+    max_sum = a[0]      # Stores the sum of the MSS
+    max_i = 0           # Stores the lower bound of the MSS
+    max_j = 0           #Stores the upper bound of the MSS
+    n = len(a)          #Stores the length of the input array
     
     #i: Lower Bound for sum
-    for i in range(0,n):
+    for i in range(n):
 
         #j: Upper Bound for sum
-        for j in range(i,n):
+        for j in range(i, n):
 
             #Stores the sum of the subarray from index i to j inclusive
             #Initialized to the first element to be summed
             curr_sum = a[i]
             
             #Loop through remaining elements to be summed
-            for k in range(i+1,j+1):
+            for k in range(i + 1,j + 1):
                 curr_sum += a[k]
             
             #If a new max_sum is found, update max_sum, max_i, max_j
@@ -37,8 +36,6 @@ def mss_enumerative(a):
                 max_j = j
 
     return max_sum, max_i, max_j
-
-
 
 
 # TODO: USE THIS AS BASIS FOR PARSING FILE INPUT
