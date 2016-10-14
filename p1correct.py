@@ -1,4 +1,4 @@
-#CS 325_400_F2016 Project1 - Algo1: Enumeration
+#CS 325_400_F2016 Project1 - Correctness Tests
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 from analysis_helpers import *
@@ -12,27 +12,7 @@ from A4_LinearTime import *
 def run_algorithm_test(alg, test_arrays, filename):
     for test_array in test_arrays:
         result, start, end = alg(test_array)
-        write_results_to_file(test_array, start, end, result, filename, "a")
-
-
-# TODO: Read in the arrays from file; this is just a small sample
-def load_arrays(filename):
-    with open(filename, 'r') as array_file:
-        contents = array_file.read()
-
-    contents = (contents.strip()            # strip whitespace at ends
-                        .replace('[', '')   # replace useless characters
-                        .replace(']', '')
-                        .replace(' ', '')   # replace whitespace
-                        .split('\n'))       # separate the lines   
-
-    arrays = []
-    for line in contents:
-        # split line into tokens at each comma and convert tokens to numbers
-        arrays.append([int(num) for num in line.split(',')])
-
-    return arrays
-
+        write_results_to_file(test_array, start, end, result, filename, 'a')
 
 
 test_arrays = [
@@ -45,26 +25,26 @@ test_arrays = [
     , [-2, 1, -3, 4, -1, 2, 1, -5, 4]
     ]
 
-#test_arrays = load_arrays('MSS_Problems.txt')
+#test_arrays = load_arrays_from_file('MSS_Problems.txt')
 
-out_filename = "test.txt"
+out_filename = 'test.txt'
 #out_filename = "MSS_Results.txt"  #TODO Make sure to uncomment this line if using alt file on prior line
-border = "=" * 40
+border = '=' * 40
 
 # Run algorithm 1 and append results to filename
-write_test_header_to_file(out_filename, "Algorithm 1: Enumeration", border)
+write_test_header_to_file(out_filename, 'Algorithm 1: Enumeration', border)
 run_algorithm_test(mss_enumerative, test_arrays, out_filename)
 
 # Run algorithm 2 and append results to filename
-write_test_header_to_file(out_filename, "Algorithm 2: Better Enumeration", border)
+write_test_header_to_file(out_filename, 'Algorithm 2: Better Enumeration', border)
 run_algorithm_test(mss_better_enum, test_arrays, out_filename)
 
 # Run algorithm 3 and append results to filename
-write_test_header_to_file(out_filename, "Algorithm 3: Divide & Conquer", border)
+write_test_header_to_file(out_filename, 'Algorithm 3: Divide & Conquer', border)
 run_algorithm_test(mss_divconq, test_arrays, out_filename)
 
 # Run algorithm 4 and append results to filename
-write_test_header_to_file(out_filename, "Algorithm 4: Linear-Time", border)
+write_test_header_to_file(out_filename, 'Algorithm 4: Linear-Time', border)
 run_algorithm_test(mss_linear, test_arrays, out_filename)
 
 # EOF
