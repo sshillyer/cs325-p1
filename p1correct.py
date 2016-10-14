@@ -10,9 +10,12 @@ import sys
 
 
 def run_algorithm_test(alg, test_arrays, filename):
+    results = []
     for test_array in test_arrays:
         result, start, end = alg(test_array)
         write_results_to_file(test_array, start, end, result, filename, 'a')
+        results.append(result)
+    return results
 
 # These arrays are hard coded from the file
 # test_arrays = [
@@ -48,20 +51,27 @@ if not test_arrays:
 #out_filename = "MSS_Results.txt"  #TODO Make sure to uncomment this line if using alt file on prior line
 border = '=' * 40
 
+results = []
+
 # Run algorithm 1 and append results to filename
 write_test_header_to_file(out_filename, 'Algorithm 1: Enumeration', border)
-run_algorithm_test(mss_enumerative, test_arrays, out_filename)
+results.append(run_algorithm_test(mss_enumerative, test_arrays, out_filename))
 
 # Run algorithm 2 and append results to filename
 write_test_header_to_file(out_filename, 'Algorithm 2: Better Enumeration', border)
-run_algorithm_test(mss_better_enum, test_arrays, out_filename)
+results.append(run_algorithm_test(mss_better_enum, test_arrays, out_filename))
 
 # Run algorithm 3 and append results to filename
 write_test_header_to_file(out_filename, 'Algorithm 3: Divide & Conquer', border)
-run_algorithm_test(mss_divconq, test_arrays, out_filename)
+results.append(run_algorithm_test(mss_divconq, test_arrays, out_filename))
 
 # Run algorithm 4 and append results to filename
 write_test_header_to_file(out_filename, 'Algorithm 4: Linear-Time', border)
-run_algorithm_test(mss_linear, test_arrays, out_filename)
+results.append(run_algorithm_test(mss_linear, test_arrays, out_filename))
+
+# Log results to console to make sure no discrepencies
+
+for a in results:
+    print(a)
 
 # EOF
