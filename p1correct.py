@@ -16,6 +16,24 @@ def run_algorithm_test(alg, test_arrays, filename):
 
 
 # TODO: Read in the arrays from file; this is just a small sample
+def load_arrays(filename):
+    with open(filename, 'r') as array_file:
+        contents = array_file.read()
+
+    contents = (contents.strip()            # strip whitespace at ends
+                        .replace('[', '')   # replace useless characters
+                        .replace(']', '')
+                        .replace(' ', '')   # replace whitespace
+                        .split('\n'))       # separate the lines   
+
+    arrays = []
+    for line in contents:
+        # split line into tokens at each comma and convert tokens to numbers
+        arrays.append([int(num) for num in line.split(',')])
+
+    return arrays
+
+
 
 test_arrays = [
     [1, 4, -9, 8, 1, 3, 3, 1, -1, -4, -6, 2, 8, 19, -10, -11]
@@ -27,10 +45,11 @@ test_arrays = [
     , [-2, 1, -3, 4, -1, 2, 1, -5, 4]
     ]
 
+test_arrays = load_arrays('MSS_Problems.txt')
 
-
-# out_filename = "test.txt"
-out_filename = "MSS_Results.txt"  #TODO Make sure to cncomment this line if using alt file on prior line
+out_filename = "test2.txt"
+#out_filename = "test.txt"
+#out_filename = "MSS_Results.txt"  #TODO Make sure to cncomment this line if using alt file on prior line
 border = "=" * 40
 
 # Run algorithm 1 and append results to filename
