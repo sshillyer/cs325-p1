@@ -45,11 +45,10 @@ test_arrays = [
     , [-2, 1, -3, 4, -1, 2, 1, -5, 4]
     ]
 
-test_arrays = load_arrays('MSS_Problems.txt')
+#test_arrays = load_arrays('MSS_Problems.txt')
 
-out_filename = "test2.txt"
-#out_filename = "test.txt"
-#out_filename = "MSS_Results.txt"  #TODO Make sure to cncomment this line if using alt file on prior line
+out_filename = "test.txt"
+#out_filename = "MSS_Results.txt"  #TODO Make sure to uncomment this line if using alt file on prior line
 border = "=" * 40
 
 # Run algorithm 1 and append results to filename

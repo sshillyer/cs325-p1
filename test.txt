@@ -23,6 +23,34 @@ Maximum Sum Subarray:
 Maxiumum Sum:
 50
 
+Original Array:
+[31, -41, 59, 26, -53, 58, 97, -93, -23, 84]
+Maximum Sum Subarray:
+[59, 26, -53, 58, 97]
+Maxiumum Sum:
+187
+
+Original Array:
+[3, 2, 1, 1, -8, 1, 1, 2, 3]
+Maximum Sum Subarray:
+[3, 2, 1, 1]
+Maxiumum Sum:
+7
+
+Original Array:
+[12, 99, 99, -99, -27, 0, 0, 0, -3, 10]
+Maximum Sum Subarray:
+[12, 99, 99]
+Maxiumum Sum:
+210
+
+Original Array:
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Maximum Sum Subarray:
+[4, -1, 2, 1]
+Maxiumum Sum:
+6
+
 ========================================
 Algorithm 2: Better Enumeration
 ========================================
@@ -47,6 +75,34 @@ Maximum Sum Subarray:
 [23, 24, -1, -15, 19]
 Maxiumum Sum:
 50
+
+Original Array:
+[31, -41, 59, 26, -53, 58, 97, -93, -23, 84]
+Maximum Sum Subarray:
+[59, 26, -53, 58, 97]
+Maxiumum Sum:
+187
+
+Original Array:
+[3, 2, 1, 1, -8, 1, 1, 2, 3]
+Maximum Sum Subarray:
+[3, 2, 1, 1]
+Maxiumum Sum:
+7
+
+Original Array:
+[12, 99, 99, -99, -27, 0, 0, 0, -3, 10]
+Maximum Sum Subarray:
+[12, 99, 99]
+Maxiumum Sum:
+210
+
+Original Array:
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Maximum Sum Subarray:
+[4, -1, 2, 1]
+Maxiumum Sum:
+6
 
 ========================================
 Algorithm 3: Divide & Conquer
@@ -73,6 +129,34 @@ Maximum Sum Subarray:
 Maxiumum Sum:
 50
 
+Original Array:
+[31, -41, 59, 26, -53, 58, 97, -93, -23, 84]
+Maximum Sum Subarray:
+[59, 26, -53, 58, 97]
+Maxiumum Sum:
+187
+
+Original Array:
+[3, 2, 1, 1, -8, 1, 1, 2, 3]
+Maximum Sum Subarray:
+[1, 1, 2, 3]
+Maxiumum Sum:
+7
+
+Original Array:
+[12, 99, 99, -99, -27, 0, 0, 0, -3, 10]
+Maximum Sum Subarray:
+[12, 99, 99]
+Maxiumum Sum:
+210
+
+Original Array:
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Maximum Sum Subarray:
+[4, -1, 2, 1]
+Maxiumum Sum:
+6
+
 ========================================
 Algorithm 4: Linear-Time
 ========================================
@@ -97,4 +181,32 @@ Maximum Sum Subarray:
 [23, 24, -1, -15, 19]
 Maxiumum Sum:
 50
+
+Original Array:
+[31, -41, 59, 26, -53, 58, 97, -93, -23, 84]
+Maximum Sum Subarray:
+[59, 26, -53, 58, 97]
+Maxiumum Sum:
+187
+
+Original Array:
+[3, 2, 1, 1, -8, 1, 1, 2, 3]
+Maximum Sum Subarray:
+[3, 2, 1, 1]
+Maxiumum Sum:
+7
+
+Original Array:
+[12, 99, 99, -99, -27, 0, 0, 0, -3, 10]
+Maximum Sum Subarray:
+[12, 99, 99]
+Maxiumum Sum:
+210
+
+Original Array:
+[-2, 1, -3, 4, -1, 2, 1, -5, 4]
+Maximum Sum Subarray:
+[4, -1, 2, 1]
+Maxiumum Sum:
+6
 

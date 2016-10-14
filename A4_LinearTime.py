@@ -20,7 +20,7 @@ def mss_linear(a):
     curr_sum = 0
     for j in range(0,arrayLen):
         curr_sum += a[j]
-        if(curr_sum>max_sum):
+        if(curr_sum>=max_sum):
             max_sum = curr_sum
             max_j = j
 
