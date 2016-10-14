@@ -21,7 +21,7 @@ alg_4_n_values = get_array_of_n_values(10, 5, 20)
 # Wrap these up in a single variable
 alg_n_values = [alg_1_n_values, alg_2_n_values, alg_3_n_values, alg_4_n_values]
 algorithms = [mss_enumerative, mss_better_enum, mss_divconq, mss_linear]
-
+labels = ["Enumeration", "BetterEnumeration", "DivideAndConquer", "Linear"]
 
 '''
 Each call of the algorithm for each n will be executed exactly ITERATIONS times to minimize random variability in
@@ -32,14 +32,20 @@ random.seed()
 random.SystemRandom()
 
 
-for n_values, algorithm in zip(alg_n_values, algorithms):
+for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
+
+    # Run the test for each size n in alg_*_n_values[] array
     for n in n_values:
         arrs = []
+
+        # Build i arrays of size n
         for i in range(ITERATIONS):
             arrs.append(build_random_array(n))
 
-        print('Timing algorithm' )
+        # Pass each algorithm and its corresponding arrays in to the timer
+        print('Timing algorithm: ' + label)
         elapsed_time = time_alg(algorithm, arrs, ITERATIONS)
-#
-# print('Total time: ' + str(elapsed_time) + ' seconds')
-# print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
+        print('Total time: ' + str(elapsed_time) + ' seconds')
+        print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
+
+        # Write the algorithm's average run time for current n to a csv file
