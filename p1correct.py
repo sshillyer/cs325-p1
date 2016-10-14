@@ -17,16 +17,6 @@ def run_algorithm_test(alg, test_arrays, filename):
         results.append(result)
     return results
 
-# These arrays are hard coded from the file
-# test_arrays = [
-#     [1, 4, -9, 8, 1, 3, 3, 1, -1, -4, -6, 2, 8, 19, -10, -11]
-#     , [2, 9, 8, 6, 5, -11, 9, -11, 7, 5, -1, -8, -3, 7 -2]
-#     , [10, -11, -1, -9, 33, -45, 23, 24, -1, -7 -8, 19]
-#     , [31,-41, 59, 26, -53, 58, 97, -93, -23, 84]
-#     , [3, 2, 1, 1, -8, 1, 1, 2, 3]
-#     , [12, 99, 99, -99, -27, 0, 0, 0, -3, 10]
-#     , [-2, 1, -3, 4, -1, 2, 1, -5, 4]
-#     ]
 
 # File names to read from and write to
 if len(sys.argv) == 1:
@@ -36,7 +26,7 @@ elif len(sys.argv) == 3:
     in_filename = sys.argv[1]
     out_filename = sys.argv[2]
 else:
-    print("Usage: p1correct.py [input_file] [ouput_file]")
+    print("Usage: p1correct.py [input_file ouput_file]")
 
 print("Reading arrays from: \t" + in_filename)
 print("Results saved to:    \t" + out_filename)
