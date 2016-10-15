@@ -17,9 +17,9 @@ TODO: Adjust these values so that we get higher time values and a smoother looki
 '''
 # Call arguments: (Starting Value, Increment Between Values, Quantity of n to test (Minimum is 10) )
 alg_1_n_values = get_array_of_n_values(10, 10, 20)
-alg_2_n_values = get_array_of_n_values(10, 20, 20)
-alg_3_n_values = get_array_of_n_values(10, 30, 20)
-alg_4_n_values = get_array_of_n_values(10, 40, 20)
+alg_2_n_values = get_array_of_n_values(10, 50, 20)
+alg_3_n_values = get_array_of_n_values(10, 100, 20)
+alg_4_n_values = get_array_of_n_values(10, 2000, 20)
 
 # Wrap these up in a single variable
 alg_n_values = [alg_1_n_values, alg_2_n_values, alg_3_n_values, alg_4_n_values]
@@ -39,7 +39,7 @@ for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
 
     # Open results file for appending, insert header
     filename = label + '-results.csv'
-    f = open(filename, 'a')
+    f = open(filename, 'w')
     f.write("n,total time,average time\n")
 
     # Run the test for each size n in alg_*_n_values[] array
