@@ -12,11 +12,14 @@ import sys
 Set up array of n-values to pass to each algorithm
 We set up different sequences to run for each algorithm to ensure we can execute the algorithms within acceptable
 time-frames (> ~0 seconds, < ~minute or so)
+
+TODO: Adjust these values so that we get higher time values and a smoother looking plot
 '''
+# Call arguments: (Starting Value, Increment Between Values, Quantity of n to test (Minimum is 10) )
 alg_1_n_values = get_array_of_n_values(10, 10, 20)
-alg_2_n_values = get_array_of_n_values(10, 5, 20)
-alg_3_n_values = get_array_of_n_values(10, 5, 20)
-alg_4_n_values = get_array_of_n_values(10, 5, 20)
+alg_2_n_values = get_array_of_n_values(10, 20, 20)
+alg_3_n_values = get_array_of_n_values(10, 30, 20)
+alg_4_n_values = get_array_of_n_values(10, 40, 20)
 
 # Wrap these up in a single variable
 alg_n_values = [alg_1_n_values, alg_2_n_values, alg_3_n_values, alg_4_n_values]
@@ -31,8 +34,13 @@ ITERATIONS = 10
 random.seed()
 random.SystemRandom()
 
-
 for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
+    print('Timing algorithm: ' + label)
+
+    # Open results file for appending, insert header
+    filename = label + '-results.csv'
+    f = open(filename, 'a')
+    f.write("n,total time,average time\n")
 
     # Run the test for each size n in alg_*_n_values[] array
     for n in n_values:
@@ -43,9 +51,16 @@ for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
             arrs.append(build_random_array(n))
 
         # Pass each algorithm and its corresponding arrays in to the timer
-        print('Timing algorithm: ' + label)
+        print('n=' + str(n))
         elapsed_time = time_alg(algorithm, arrs, ITERATIONS)
-        print('Total time: ' + str(elapsed_time) + ' seconds')
-        print('Average time: ' + str(elapsed_time / ITERATIONS) + ' seconds')
+        average_time = elapsed_time / ITERATIONS
 
         # Write the algorithm's average run time for current n to a csv file
+        f.write(str(n) + ',' + str(elapsed_time) + ',' + str(average_time) + '\n')
+
+        # Echo results to console for easy debugging
+        print('Total time: ' + str(elapsed_time) + ' seconds')
+        print('Average time: ' + str(average_time) + ' seconds')
+
+    f.write('\n')
+    f.close()
