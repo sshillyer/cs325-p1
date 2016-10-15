@@ -16,10 +16,10 @@ time-frames (> ~0 seconds, < ~minute or so)
 TODO: Adjust these values so that we get higher time values and a smoother looking plot
 '''
 # Call arguments: (Starting Value, Increment Between Values, Quantity of n to test (Minimum is 10) )
-alg_1_n_values = get_array_of_n_values(10, 10, 20)
-alg_2_n_values = get_array_of_n_values(10, 50, 20)
-alg_3_n_values = get_array_of_n_values(10, 100, 20)
-alg_4_n_values = get_array_of_n_values(10, 2000, 20)
+alg_1_n_values = get_array_of_n_values(10, 10, 25)
+alg_2_n_values = get_array_of_n_values(10, 50, 25)
+alg_3_n_values = get_array_of_n_values(10, 1000, 25)
+alg_4_n_values = get_array_of_n_values(10, 2500, 25)
 
 # Wrap these up in a single variable
 alg_n_values = [alg_1_n_values, alg_2_n_values, alg_3_n_values, alg_4_n_values]
@@ -30,7 +30,7 @@ labels = ["Enumeration", "BetterEnumeration", "DivideAndConquer", "Linear"]
 Each call of the algorithm for each n will be executed exactly ITERATIONS times to minimize random variability in
 execution times.
 '''
-ITERATIONS = 10
+ITERATIONS = 20
 random.SystemRandom()
 
 for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
