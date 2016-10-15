@@ -39,7 +39,7 @@ for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
     # Open results file for appending, insert header
     filename = label + '-results.csv'
     f = open(filename, 'w')
-    f.write("n,total time,average time\n")
+    f.write("n,average time\n")
 
     # Run the test for each size n in alg_*_n_values[] array
     for n in n_values:
@@ -55,7 +55,7 @@ for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
         average_time = elapsed_time / ITERATIONS
 
         # Write the algorithm's average run time for current n to a csv file
-        f.write(str(n) + ',' + str(elapsed_time) + ',' + str(average_time) + '\n')
+        f.write(str(n) + ',' + str(average_time) + '\n')
 
         # Echo results to console for easy debugging
         print('Total time: ' + str(elapsed_time) + ' seconds')
