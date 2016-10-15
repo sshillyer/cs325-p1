@@ -11,8 +11,8 @@ def mss_better_enum(a):
 
     #Initialize to the first element in the input array
     max_sum = a[0]      #Stores the sum of the MSS
-    max_i = 0           #Stores the lower bound of the MSS
-    max_j = 0           #Stores the upper bound of the MSS
+    max_i = 0           #Stores the lower index of the MSS
+    max_j = 0           #Stores the upper index of the MSS
     n = len(a)          #Stores the length of the input array
     
     #i: Lower Bound for sum
