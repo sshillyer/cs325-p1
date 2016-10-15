@@ -45,11 +45,6 @@ def mss_linear(a):
         '''
         if curr_sum < 0:
             curr_sum = 0
-            while j+1 < array_len:
-                if a[j+1]<0:
-                    j += 1
-                else:
-                    break
             curr_i = j+1
     
     return max_sum, max_i, max_j
