@@ -31,7 +31,6 @@ Each call of the algorithm for each n will be executed exactly ITERATIONS times 
 execution times.
 '''
 ITERATIONS = 10
-random.seed()
 random.SystemRandom()
 
 for n_values, algorithm, label in zip(alg_n_values, algorithms, labels):
