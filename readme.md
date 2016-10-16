@@ -33,3 +33,7 @@ Execute p1experimental.py using python3. To fun custom tests of varying n-values
 modify the source code. This code could easily be modified to test other algorithms in the future.
 
 Usage: python3 p1algorithm.py
+
+You can see how wo validated our predictions for t=10, 30, 60 seconds by executing / inspecting the p1predict.py script
+
+Usage: python3 p1predict.py
