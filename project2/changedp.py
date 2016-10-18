@@ -17,21 +17,50 @@ def changedp(D, a):
     if a == 0:          #Zero change left to make.
         return minarr, minamt
 
+    #If the current amount hasn't been processed, process and add to memo
     if a not in change_memo:
+        #Loop through each denomination
         for i in range(0, len(D)):
+            '''
+            :If the denomination is too big, then skip it.
+            :If it's small enough, then we use 1 of these coins and then
+            :   test the amount that remains after subtracting that coin.
+            '''
             if(D[i]<=a):
+                #Get values from recursion
                 passedarr, curramt = changedp(D,a-D[i])
+                
+                '''
+                :Since changedp passes change_memo[a], passedarr is
+                :   passed by reference. The following makes currarr a
+                :   copy of passedarr as if it was passed by value.
+                '''
                 currarr = []
                 for j in range(0, len(passedarr)):
                     currarr.append(passedarr[j])
+                
+                #Update currarr with 1 additional coin of the correct denom
                 currarr[i] = currarr[i]+1
+                
+                #Update curramt with 1 additional coin
                 curramt = curramt+1
+                
+                '''
+                :If curramt shows that we have a better amount now than
+                :   our previous best result, make minamt the newly found
+                :   amount, and make minarr the newly found best array of
+                :   coins.
+                '''
                 if minamt>curramt:
                     minamt = curramt
                     minarr = currarr
-                change_memo[a] = [minarr, minamt]
+            
+            #Save the best results to the memo.
+            change_memo[a] = [minarr, minamt]
+
     return change_memo[a]
 
+#User input
 user_array = input("Enter array of denominations in increasing order: ")
 for char in user_array:
     if char in " []":
@@ -43,10 +72,12 @@ for i in range(0,len(user_array)):
 user_amount = int(input("Enter an amount to make change for: "))
 
 
+#Function call
 start_time = time.time()
 arr, mincoins = changedp(user_array, user_amount)
 end_time = time.time() - start_time
 
+#Output
 print(arr)
 print("You need to use", mincoins, "coins.")
-print("It took", end_time, "to compute.")
+print("It took", end_time, "seconds to compute.")
