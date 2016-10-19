@@ -1,11 +1,11 @@
 #Python3 implementation of change with dynamic programming
 #Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-import time, resource, sys
+import time#, resource, sys
 
 #Researched recursion limit stackoverflow.com/questions/5061582
-resource.setrlimit(resource.RLIMIT_STACK, (2**29,-1))
-sys.setrecursionlimit(10**6)
+# resource.setrlimit(resource.RLIMIT_STACK, (2**29,-1))
+# sys.setrecursionlimit(10**6)
 
 change_memo={}
 def changedp(D, a):
@@ -61,23 +61,23 @@ def changedp(D, a):
     return change_memo[a]
 
 #User input
-user_array = input("Enter array of denominations in increasing order: ")
-for char in user_array:
-    if char in " []":
-        user_array = user_array.replace(char,'')
-user_array = user_array.split(',')
-for i in range(0,len(user_array)):
-    user_array[i] = int(user_array[i])
-
-user_amount = int(input("Enter an amount to make change for: "))
-
-
-#Function call
-start_time = time.time()
-arr, mincoins = changedp(user_array, user_amount)
-end_time = time.time() - start_time
-
-#Output
-print(arr)
-print("You need to use", mincoins, "coins.")
-print("It took", end_time, "seconds to compute.")
+# user_array = input("Enter array of denominations in increasing order: ")
+# for char in user_array:
+#     if char in " []":
+#         user_array = user_array.replace(char,'')
+# user_array = user_array.split(',')
+# for i in range(0,len(user_array)):
+#     user_array[i] = int(user_array[i])
+#
+# user_amount = int(input("Enter an amount to make change for: "))
+#
+#
+# #Function call
+# start_time = time.time()
+# arr, mincoins = changedp(user_array, user_amount)
+# end_time = time.time() - start_time
+#
+# #Output
+# print(arr)
+# print("You need to use", mincoins, "coins.")
+# print("It took", end_time, "seconds to compute.")

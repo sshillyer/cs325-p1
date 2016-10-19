@@ -1,4 +1,4 @@
-#CS 325_400_F2016 Project1 - Correctness Tests
+# CS 325_400_F2016 Project1 - Correctness Tests
 # Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 from analysis_helpers import *

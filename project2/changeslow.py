@@ -40,24 +40,24 @@ def changeslow(D, a):
 
     return minarr, minamt
 
-#User Input
-user_array = input("Enter array of denominations in increasing order: ")
-for char in user_array:
-    if char in " []":
-        user_array = user_array.replace(char,'')
-user_array = user_array.split(',')
-for i in range(0,len(user_array)):
-    user_array[i] = int(user_array[i])
-
-user_amount = int(input("Enter an amount to make change for: "))
-
-
-#Function Call
-start_time = time.time()
-arr, mincoins = changeslow(user_array, user_amount)
-end_time = time.time() - start_time
-
-#Output
-print(arr)
-print("You need to use", mincoins, "coins.")
-print("It took", end_time, "seconds to compute.")
+# #User Input
+# user_array = input("Enter array of denominations in increasing order: ")
+# for char in user_array:
+#     if char in " []":
+#         user_array = user_array.replace(char,'')
+# user_array = user_array.split(',')
+# for i in range(0,len(user_array)):
+#     user_array[i] = int(user_array[i])
+#
+# user_amount = int(input("Enter an amount to make change for: "))
+#
+#
+# #Function Call
+# start_time = time.time()
+# arr, mincoins = changeslow(user_array, user_amount)
+# end_time = time.time() - start_time
+#
+# #Output
+# print(arr)
+# print("You need to use", mincoins, "coins.")
+# print("It took", end_time, "seconds to compute.")
