@@ -21,7 +21,7 @@ algorithm_labels = ['changegreedy', 'changedp']
 for algorithm, label in zip(algorithms, algorithm_labels):
     print(label)
 
-    filename = label + 'q3results.csv'
+    filename = 'Q3-' + label + '.csv'
 
     # Start a fresh file for the output and print column headers
     f = open(filename, 'w')
@@ -37,3 +37,5 @@ for algorithm, label in zip(algorithms, algorithm_labels):
 
         # Console echo
         print('a: ' + str(a) + '\tm: ' + str(m))
+
+# EOF
