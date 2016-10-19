@@ -1,11 +1,11 @@
 #Python3 implementation of change with dynamic programming
 #Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
-import time#, resource, sys
+import time, sys#, resources
 
-#Researched recursion limit stackoverflow.com/questions/5061582
+# Researched recursion limit stackoverflow.com/questions/5061582
 # resource.setrlimit(resource.RLIMIT_STACK, (2**29,-1))
-# sys.setrecursionlimit(10**6)
+sys.setrecursionlimit(10**6)
 
 change_memo={}
 def changedp(D, a):
