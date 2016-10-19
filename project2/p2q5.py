@@ -6,24 +6,21 @@ from changedp import *
 from changegreedy import *
 from changeslow import *
 
+# 5. Suppose V = [1, 2, 4, 6, 8, 10, 12, …, 30]. For each integer value of A in [2000, 2001, 2002, …,
+# 2200] determine the number of coins that changegreedy and changedp requires. You can
+# attempt to run changeslow however if it takes too long you can select smaller values of A and
+# also run all three algorithms on the values. Plot the number of coins as a function of A for each
+# algorithm.
 
-# 4. Suppose V1 = [1, 2, 6, 12, 24, 48, 60] and V2 = [1, 6, 13, 37, 150]. For each integer value of A in
-# [2000, 2001, 2002, …, 2200] determine the number of coins that changegreedy and changedp
-# requires. If your algorithms run too fast try [10,000, 10,001, 10,003, …, 10,100]. You can attempt
-# to run changeslow however if it takes too long you can select smaller values of A and also run all
-# three algorithms on the values. Plot the number of coins as a function of A for each algorithm.
-# How do the approaches compare?
 
-# Note: Compare Q4-changedp-v1-standard.csv to Q4-changegreedy-v1-standard.csv
-# Also: Compare Q4-changedp-v2-standard.csv to Q4-changegreedy-v2-standard.csv
-# Also: Can compare Q4-*-v{1-2}-smallerA.csv files to one another.
+# TODO UPDATE THE STUFF IN THIS FILE THIS IS A COPY PASTE OF Q4!!
 
-def run_q4_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix):
+def run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix):
     for V, v_label in zip(V_arrays, V_labels):
         for algorithm, label in zip(algorithms, algorithm_labels):
             print(label + ' ' + v_label)
 
-            filename = 'Q4-' + label + '-' + v_label + suffix + '.csv'
+            filename = 'Q5-' + label + '-' + v_label + suffix + '.csv'
 
             # Start a fresh file for the output and print column headers
             f = open(filename, 'w')
@@ -59,7 +56,7 @@ algorithm_labels = ['changegreedy'
                     #,'changeslow'
                     ]
 
-run_q4_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-standard")
+run_q3_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-standard")
 
 
 
@@ -74,6 +71,6 @@ algorithm_labels = ['changegreedy'
                     ,'changeslow'
                     ]
 
-run_q4_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-smallerA")
+run_q3_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-smallerA")
 
 # EOF
