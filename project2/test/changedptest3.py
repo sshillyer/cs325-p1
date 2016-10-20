@@ -1,5 +1,5 @@
 #Python3 implementation of change with dynamic programming
-#Greedy until highest denomination squared
+#Greedy until min(lcm all elements in D, highest denomination squared)
 #Jesse Thoren, Shawn Hillyer, Jason Goldfine-Middleton
 
 import time, resource, sys
@@ -18,8 +18,12 @@ def changedp(D, a):
     if a == 0:          #Zero change left to make.
         return minarr, minamt
 
-    #Conservative estimate for when we can stop being greedy
-    toobig = D[len(D)-1]*(D[len(D)-1])
+    #Calculate the lcm of all the entries in D
+    leastcommon = 1;
+    for i in range(1, len(D)):
+        leastcommon = lcm(leastcommon,D[i])
+    toobig = min(leastcommon, D[len(D)-1]**2)
+
     extracoins = 0
 
     '''
@@ -81,6 +85,16 @@ def changedp(D, a):
         res[1] = res[1] + extracoins
 
     return res
+
+#gcd used in lcm calculation
+def gcd(a,b):
+    while b:
+        a, b = b, a%b
+    return a
+
+#lcm used to determine toobig bound
+def lcm(a,b):
+    return (a*b)//gcd(a,b)
 
 #User input
 user_array = input("Enter array of denominations in increasing order: ")
