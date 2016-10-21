@@ -27,7 +27,7 @@ def run_tests(V, A, algorithms, algorithm_labels, C_expecteds, m_expecteds):
 
 # Testing same 3 algorithms and labels each time
 algorithms = [changedp, changegreedy, changeslow]
-algorithm_lables = ["changedp()", "changegreed()", "changeslow"]
+algorithm_lables = ["changedp()", "changegreedy()", "changeslow"]
 
 
 # 1. Suppose V = [1, 2, 4, 8] and A = 15. All algorithms should return C=[1,1,1,1] and m = 4.

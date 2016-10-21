@@ -121,7 +121,7 @@ def build_random_array(size = 100):
     return arr
 
 
-def time_alg(alg, arr, cycles):
+def time_alg(alg, V, a, cycles):
     '''
     Executes an algorithm's execution 'cycles' times and returns the
         elapsed time, in seconds.
@@ -134,13 +134,15 @@ def time_alg(alg, arr, cycles):
 
     elapsed_time = 0
 
+    # Execute the agorithm on the array cycles times, summing the time to run
     for i in range(cycles):
         start = timeit.default_timer()
-        alg(arr[i])
+        alg(V, a)
         stop = timeit.default_timer()
         elapsed_time += stop - start
 
-    return elapsed_time
+    # Return the average runtime as we don't care about average
+    return elapsed_time/cycles
 
 def get_array_of_n_values(first, step_size, qty):
     '''
