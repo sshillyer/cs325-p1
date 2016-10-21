@@ -11,10 +11,10 @@ def changegreedy(D, a):
 
     #Loop through denomination array backwards to test big coins first.
     for i in range(len(D)-1, -1, -1):
-        while(a>=D[i]):
-            minarr[i] = minarr[i] + 1
-            minamt = minamt + 1
-            a = a - D[i]
+        if(a>=D[i]):
+            minarr[i] = a//D[i]
+            minamt = minamt + a//D[i]
+            a = a%D[i]
     return minarr, minamt
 
 # #User input
