@@ -7,8 +7,13 @@ import time, sys#, resources
 # resource.setrlimit(resource.RLIMIT_STACK, (2**29,-1))
 sys.setrecursionlimit(10**6)
 
-change_memo={}
 def changedp(D, a):
+    global change_memo
+    change_memo = {}
+    return changedphelper(D,a)
+
+
+def changedphelper(D, a):
     minarr = []         #Stores coins used to make change for a with minamt coins
     for i in range(0,len(D)):
         minarr.append(0)
@@ -28,7 +33,7 @@ def changedp(D, a):
             '''
             if(D[i]<=a):
                 #Get values from recursion
-                passedarr, curramt = changedp(D,a-D[i])
+                passedarr, curramt = changedphelper(D,a-D[i])
                 
                 '''
                 :Since changedp passes change_memo[a], passedarr is
