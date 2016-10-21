@@ -6,6 +6,7 @@ from changedp import *
 from changegreedy import *
 from changeslow import *
 
+# PART 6: RUNTIME ANALYSIS OF THE FOLLOWING:
 
 # 3. Suppose V = [1, 5, 10, 25, 50]. For each integer value of A in [2010, 2015, 2020, …, 2200]
 # determine the number of coins that changegreedy and changedp requires. You can attempt to
@@ -16,12 +17,12 @@ from changeslow import *
 V = [1, 5, 10, 25, 50]
 A = range(7000, 7100, 5)  # start, last+1, step
 algorithms = [changegreedy, changedp]
-algorithm_labels = ['changegreedy-q3', 'changedp-q3']
+algorithm_labels = ['changegreedy', 'changedp']
 
 for algorithm, label in zip(algorithms, algorithm_labels):
     print(label)
 
-    filename = 'Q6-' + label + '.csv'
+    filename = 'Q6-Q3' + label + '.csv'
 
     # Start a fresh file for the output and print column headers
     f = open(filename, 'w')
