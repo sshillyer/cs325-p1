@@ -14,27 +14,28 @@ from changeslow import *
 # algorithm.
 
 
-def run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix):
+def run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix, iterations):
     for V, v_label in zip(V_arrays, V_labels):
         for algorithm, label in zip(algorithms, algorithm_labels):
             print(label + ' ' + v_label)
 
-            filename = 'Q5-' + label + '-' + v_label + suffix + '.csv'
+            filename = 'Q6-Q5' + label + '-' + v_label + suffix + '.csv'
 
             # Start a fresh file for the output and print column headers
             f = open(filename, 'w')
-            f.write("A,CoinsNeeded\n")
+            f.write("n,Average Runtime\n")
             f.close()
 
             # run the algorithm on each a value
             for a in A:
-                C, m = algorithm(V, a)
+                execution_iterations = iterations
+                average_runtime = time_alg(algorithm, V, a, execution_iterations)
                 f = open(filename, 'a')
-                f.write(str(a) + ',' + str(m) + '\n')
+                f.write(str(a) + ',' + str(average_runtime) + '\n')
                 f.close()
 
                 # Console echo
-                print('a: ' + str(a) + '\tm: ' + str(m))
+                print('a: ' + str(a) + '\tAverage Runtime: ' + str(average_runtime))
 
 
 # Run the test on the faster algorithms on the suggested data set
@@ -57,7 +58,7 @@ algorithm_labels = ['changegreedy'
                     #,'changeslow'
                     ]
 
-run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-standard")
+run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-standard", 10)
 
 
 
@@ -72,6 +73,6 @@ algorithm_labels = ['changegreedy'
                     ,'changeslow'
                     ]
 
-run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-smallerA")
+run_q5_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "-smallerA", 2)
 
 # EOF
