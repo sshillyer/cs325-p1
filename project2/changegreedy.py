@@ -4,9 +4,7 @@
 import time
 
 def changegreedy(D, a):
-    minarr = []         #Stores coins used to make change for a with minamt coins.
-    for i in range(0,len(D)):
-        minarr.append(0)
+    minarr = [0 for x in range(len(D))]         #Stores coins used to make change for a with minamt coins.
     minamt = 0          #Stores min amount of coins
 
     #Loop through denomination array backwards to test big coins first.
