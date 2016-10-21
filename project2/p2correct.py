@@ -27,7 +27,7 @@ def run_tests(V, A, algorithms, algorithm_labels, C_expecteds, m_expecteds):
 
 # Testing same 3 algorithms and labels each time
 algorithms = [changedp, changegreedy, changeslow]
-algorithm_lables = ["changedp()", "changegreedy()", "changeslow"]
+algorithm_labels = ["changedp()", "changegreedy()", "changeslow()"]
 
 
 # 1. Suppose V = [1, 2, 4, 8] and A = 15. All algorithms should return C=[1,1,1,1] and m = 4.
@@ -40,7 +40,7 @@ C_expecteds = [
     ]
 m_expecteds = [4, 4, 4]
 
-run_tests(V, A, algorithms, algorithm_lables, C_expecteds, m_expecteds)
+run_tests(V, A, algorithms, algorithm_labels, C_expecteds, m_expecteds)
 
 # 2. Suppose V = [1, 3, 7, 12] and A = 29. The changegreedy should return C = [2, 1, 0, 2] with m = 5
 # and changedp and slowchange should return C = [0, 1, 2, 1] with m = 4. The minimum number of coins
@@ -58,7 +58,7 @@ m_expecteds = [4, #changedp
                5, #changegreedy
                4] #changeslow
 
-run_tests(V, A, algorithms, algorithm_lables, C_expecteds, m_expecteds)
+run_tests(V, A, algorithms, algorithm_labels, C_expecteds, m_expecteds)
 
 # 3. If A is changed above to 31, all algorithms should return C = [0, 0, 1, 2], with m = 3.
 V = [1, 3, 7, 12]
@@ -72,4 +72,4 @@ m_expecteds = [3, #changedp
                3, #changegreedy
                3] #changeslow
 
-run_tests(V, A, algorithms, algorithm_lables, C_expecteds, m_expecteds)
+run_tests(V, A, algorithms, algorithm_labels, C_expecteds, m_expecteds)
