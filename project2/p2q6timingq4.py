@@ -50,7 +50,7 @@ V_arrays = [
 ]
 V_labels = ['v1', 'v2']
 
-A = range(2000, 2201, 1)  # start, last+1, step
+A = range(4000,7000, 11)  # start, last+1, step
 # A = range(10000, 10100, 1)  # blows up changedp algorithm as of 4:46pm 10/19/2016 using v1 array for input
 algorithms = [changegreedy
               , changedp
