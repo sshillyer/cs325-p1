@@ -12,7 +12,7 @@ def run_q7_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix, ite
         for algorithm, label in zip(algorithms, algorithm_labels):
             print(label + ' ' + v_label)
 
-            filename = 'Q7' + '-' + v_label + suffix + '.csv'
+            filename = 'Q7' + '-' + label + '-' + v_label + suffix + '.csv'
 
             # Start a fresh file for the output and print column headers
             f = open(filename, 'w')
