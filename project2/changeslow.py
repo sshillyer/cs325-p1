@@ -32,7 +32,7 @@ def changeslow(D, a):
             :   our previous best result, make minamt the newly found
             :   amount, and make minarr the newly found best array of coins.
             '''
-            if minamt>curramt:
+            if minamt>=curramt:
                 minamt = curramt
                 minarr = currarr
 

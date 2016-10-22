@@ -54,7 +54,7 @@ def changedphelper(D, a):
                 :   amount, and make minarr the newly found best array of
                 :   coins.
                 '''
-                if minamt>curramt:
+                if minamt>=curramt:
                     minamt = curramt
                     minarr = currarr
             
