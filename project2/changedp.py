@@ -31,22 +31,7 @@ def changedphelper(D, a):
             '''
             if D[i] <= a:
                 #Get values from recursion
-                passedarr, curramt = changedphelper(D, a - D[i])
-                
-                '''
-                :Since changedp passes change_memo[a], passedarr is
-                :   passed by reference. The following makes currarr a
-                :   copy of passedarr as if it was passed by value.
-                '''
-                currarr = []
-                for j in range(len(passedarr)):
-                    currarr.append(passedarr[j])
-                
-                #Update currarr with 1 additional coin of the correct denom
-                currarr[i] += 1
-                
-                #Update curramt with 1 additional coin
-                curramt += 1
+                currarr, curramt = changedphelper(D, a - D[i])
                 
                 '''
                 :If curramt shows that we have a better amount now than
@@ -54,9 +39,10 @@ def changedphelper(D, a):
                 :   amount, and make minarr the newly found best array of
                 :   coins.
                 '''
-                if minamt >= curramt:
-                    minamt = curramt
-                    minarr = currarr
+                if minamt >= curramt + 1:
+                    minamt = curramt + 1
+                    minarr = currarr[:]
+                    minarr[i] += 1
             
             #Save the best results to the memo.
             change_memo[a] = [minarr, minamt]
