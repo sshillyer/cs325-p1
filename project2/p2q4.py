@@ -43,7 +43,7 @@ def run_q4_test(V_arrays, V_labels, A, algorithms, algorithm_labels, suffix):
 
 # Run the test on the faster algorithms on the suggested data set
 V_arrays = [
-    [1, 5, 10, 25, 50],  #v1 in description
+    [1, 2, 6, 12, 24, 48, 60],  #v1 in description
     [1, 6, 13, 37, 150]  #v2 in description
 ]
 V_labels = ['v1', 'v2']
