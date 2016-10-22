@@ -14,9 +14,7 @@ def changedp(D, a):
 
 
 def changedphelper(D, a):
-    minarr = []         #Stores coins used to make change for a with minamt coins
-    for i in range(0,len(D)):
-        minarr.append(0)
+    minarr = [0 for x in range(len(D))]         #Stores coins used to make change for a with minamt coins
     minamt = a          #Worst case scenario is we use all "1" coins
 
     if a == 0:          #Zero change left to make.
