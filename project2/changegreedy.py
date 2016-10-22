@@ -8,11 +8,11 @@ def changegreedy(D, a):
     minamt = 0          #Stores min amount of coins
 
     #Loop through denomination array backwards to test big coins first.
-    for i in range(len(D)-1, -1, -1):
-        while(a>=D[i]):
-            minarr[i] = minarr[i] + 1
-            minamt = minamt + 1
-            a = a - D[i]
+    for i in range(len(D) -1, -1, -1):
+        while a >= D[i]:
+            minarr[i] += 1
+            minamt += 1
+            a -= D[i]
     return minarr, minamt
 
 # #User input

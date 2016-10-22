@@ -11,28 +11,28 @@ def changeslow(D, a):
         return minarr, minamt
 
     #Loop through each denomination
-    for i in range(0, len(D)):
+    for i in range(len(D)):
         '''
         :If the denomination is too big, then skip it.
         :If it's small enough, then we use 1 of these coins and then
         :   test the amount that remains after subtracting that coin.
         '''
-        if(D[i]<=a):
+        if D[i] <= a:
             #Get values from recursion
-            currarr, curramt = changeslow(D,a-D[i])
+            currarr, curramt = changeslow(D, a - D[i])
             
             #Update currarr with 1 additional coin of the correct denom
-            currarr[i] = currarr[i]+1
+            currarr[i] += 1
 
             #Update curramt with 1 additional coin
-            curramt = curramt+1
+            curramt += 1
 
             '''
             :If curramt shows that we have a better amount now than
             :   our previous best result, make minamt the newly found
             :   amount, and make minarr the newly found best array of coins.
             '''
-            if minamt>=curramt:
+            if minamt >= curramt:
                 minamt = curramt
                 minarr = currarr
 
