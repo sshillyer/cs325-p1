@@ -15,7 +15,7 @@ from changeslow import *
 # How do the approaches compare?
 
 V = [1, 5, 10, 25, 50]
-A = range(7000, 7100, 5)  # start, last+1, step
+A = range(4000, 7100, 33)  # start, last+1, step
 algorithms = [changegreedy, changedp]
 algorithm_labels = ['changegreedy', 'changedp']
 
