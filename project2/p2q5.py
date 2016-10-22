@@ -7,7 +7,7 @@ from changedp import *
 from changegreedy import *
 from changeslow import *
 
-# 5. Suppose V = [1, 2, 4, 6, 8, 10, 12, …, 30]. For each integer value of A in [2000, 2001, 2002, …,
+# 5. Suppose V = [1, 2, 4, 6, 8, 10, 12,...,30]. For each integer value of A in [2000, 2001, 2002, …,
 # 2200] determine the number of coins that changegreedy and changedp requires. You can
 # attempt to run changeslow however if it takes too long you can select smaller values of A and
 # also run all three algorithms on the values. Plot the number of coins as a function of A for each
