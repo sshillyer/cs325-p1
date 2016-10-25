@@ -56,13 +56,15 @@ V_arrays = [
 
 V_labels = ['v1', 'v2', 'v3', 'v4', 'v5', 'v6']
 
-A = [75, 176, 517]
+A = [2000]
 # A = range(10000, 10100, 1)  # blows up changedp algorithm as of 4:46pm 10/19/2016 using v1 array for input
 algorithms = [changegreedy
               , changedp
+              # , changeslow
               ]
 algorithm_labels = ['changegreedy'
                     ,'changedp'
+                    # , 'changeslow'
                     ]
 
 run_q7_test(V_arrays, V_labels, A, algorithms, algorithm_labels, "", 10)
