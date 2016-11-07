@@ -1,0 +1,204 @@
+**Note that these variables correspond to 100 grams of a given ingredient.**
+**That is, tm = .5 corresponds to 50 grams of tomatoes.**
+Tomato - 			tm
+Lettuce - 			le
+Spinach - 			sp
+Carrot - 			ca
+Sunflower Seeds - 	ss
+Smoked Tofu - 		st
+Chickpeas - 		ch
+Oil - 				oi
+
+At least 15 grams of protein:
+****0.85*tm + 1.62*le + 2.86*sp + 0.93*ca + 23.4*ss + 16*st + 9*ch + 0*oi >=15****
+-0.85*tm - 1.62*le - 2.86*sp - 0.93*ca - 23.4*ss - 16*st - 9*ch - 0*oi <= -15
+
+At least 2 and at most 8 grams of fat:
+****0.33*tm + 0.20*le + 0.39*sp + 0.24*ca + 48.7*ss + 5*st + 2.6*ch + 100*oi >= 2****
+-0.33*tm - 0.20*le - 0.39*sp - 0.24*ca - 48.7*ss - 5*st - 2.6*ch - 100*oi <= -2
+0.33*tm + 0.20*le + 0.39*sp + 0.24*ca + 48.7*ss + 5*st + 2.6*ch + 100*oi <= 8
+
+At least 4 grams of carbohydrates:
+****4.64*tm + 2.37*le + 3.63*sp + 9.58*ca + 15*ss + 3*st + 27*ch + 0*oi >=4****
+-4.64*tm -2.37*le -3.63*sp -9.58*ca -15*ss -3*st -27*ch -0*oi <= -4
+
+At most 200 mg of sodium:
+9*tm + 28*le + 65*sp + 69*ca + 3.8*ss + 120*st + 78*ch + 0*oi <= 200
+
+At least 40% leafy greens by mass:
+****le + sp >= .4(tm + le + sp + ca + ss + st + ch + oi)****
+****-.4*tm + .6*le + .6*sp -.4*ca - .4*ss -.4*st -.4*ch -.4*oi >=0****
+.4*tm - .6*le - .6*sp +.4*ca + .4*ss +.4*st +.4*ch +.4*oi <=0
+
+Cost:
+f = 1*tm + .75*le + .5*sp + .5*ca + .45*ss + 2.15*st + .95*ch + 2*oi
+
+Energy:
+f = 21*tm + 16*le + 40*sp + 41*ca + 585*ss + 120*st + 164*ch + 884*oi
+
+
+Part A: Determine the combination of ingredients that minimizes calories but meets all nutritional requirements.
+i. Formulate the problem as a linear program with an objective function and all constraints.
+
+System of inequalities:
+-0.85*tm - 1.62*le - 2.86*sp - 0.93*ca - 23.4*ss - 16*st - 9*ch - 0*oi <= -15
+-0.33*tm - 0.20*le - 0.39*sp - 0.24*ca - 48.7*ss - 5*st - 2.6*ch - 100*oi <= -2
+0.33*tm + 0.20*le + 0.39*sp + 0.24*ca + 48.7*ss + 5*st + 2.6*ch + 100*oi <= 8
+-4.64*tm -2.37*le -3.63*sp -9.58*ca -15*ss -3*st -27*ch -0*oi <= -4
+9*tm + 28*le + 65*sp + 69*ca + 3.8*ss + 120*st + 78*ch + 0*oi <= 200
+.4*tm - .6*le - .6*sp +.4*ca + .4*ss +.4*st +.4*ch +.4*oi <=0
+tm, le, sp, ca, ss, st, ch, oi >= 0 // Each of these variables may not be negative.
+
+Objective function:
+f = 21*tm + 16*le + 40*sp + 41*ca + 585*ss + 120*st + 164*ch + 884*oi
+
+
+ii. Determine the optimal solution for the linear program using any software you want. Include a copy of the code/file in the report.
+MATLAB:
+A = [-0.85 -1.62 -2.86 -0.93 -23.4 -16 -9 0
+     -0.33 -0.20 -0.39 -0.24 -48.7 -5 -2.6 -100
+     0.33 0.20 0.39 0.24 48.7 5 2.6 100
+     -4.64 -2.37 -3.63 -9.58 -15 -3 -27 0
+     9 28 65 69 3.8 120 78 0
+     0.4 -0.6 -0.6 0.4 0.4 0.4 0.4 0.4];
+   
+b = [-15 -2 8 -4 200 0];
+
+f = [21 16 40 41 585 120 164 884];
+
+Aeq = [];
+beq = [];
+
+lb = [0, 0, 0, 0, 0, 0, 0, 0];
+ub = [];
+
+x = linprog(f,A,b,Aeq,beq,lb,ub);
+
+This returns x = [1.5616e-11, 0.5855, 2.7476e-11, 7.1982e-12, 1.0126e-12, 0.8782, 2.8351e-12, 4.9367e-13]
+Which corresponds to 58.55 grams of Lettuce and 87.82 grams of Smoked Tofu (Appetizing?!)
+This has a total of 16*.5855 + 120*.8782 = 114.752 calories, and is the minimum calorie salad that meets the nutritional requirements.
+
+
+iii. What is the cost of the low calorie salad?
+Cost = 0.75*.5855 + 2.15*.8782 = $2.33 per low calorie "salad".
+
+
+Part B: Veronica realizes that it is also important to minimize the cost associated with the new salad. Unfortunately some of the ingredients can be expensive. Determine the combination of ingredients that minimizes cost.
+
+i. Formulate the problem as a linear program with an objective function and all constraints.
+
+System of inequalities:
+-0.85*tm - 1.62*le - 2.86*sp - 0.93*ca - 23.4*ss - 16*st - 9*ch - 0*oi <= -15
+-0.33*tm - 0.20*le - 0.39*sp - 0.24*ca - 48.7*ss - 5*st - 2.6*ch - 100*oi <= -2
+0.33*tm + 0.20*le + 0.39*sp + 0.24*ca + 48.7*ss + 5*st + 2.6*ch + 100*oi <= 8
+-4.64*tm -2.37*le -3.63*sp -9.58*ca -15*ss -3*st -27*ch -0*oi <= -4
+9*tm + 28*le + 65*sp + 69*ca + 3.8*ss + 120*st + 78*ch + 0*oi <= 200
+.4*tm - .6*le - .6*sp +.4*ca + .4*ss +.4*st +.4*ch +.4*oi <=0
+tm, le, sp, ca, ss, st, ch, oi >= 0 // Each of these variables may not be negative.
+
+Objective function:
+f =  1*tm + .75*le + .5*sp + .5*ca + .45*ss + 2.15*st + .95*ch + 2*oi
+
+
+ii. Determine the optimal solution for the linear program using any software you want. Include a copy of the code/file in the report.
+MATLAB:
+A = [-0.85 -1.62 -2.86 -0.93 -23.4 -16 -9 0
+     -0.33 -0.20 -0.39 -0.24 -48.7 -5 -2.6 -100
+     0.33 0.20 0.39 0.24 48.7 5 2.6 100
+     -4.64 -2.37 -3.63 -9.58 -15 -3 -27 0
+     9 28 65 69 3.8 120 78 0
+     0.4 -0.6 -0.6 0.4 0.4 0.4 0.4 0.4];
+   
+b = [-15 -2 8 -4 200 0];
+
+f = [1 .75 .5 .5 .45 2.15 .95 2];
+
+Aeq = [];
+beq = [];
+
+lb = [0, 0, 0, 0, 0, 0, 0, 0];
+ub = [];
+
+x = linprog(f,A,b,Aeq,beq,lb,ub);
+
+This returns x = [3.8585e-14, 1.3023e-13, 0.8323, 6.3868e-14, 0.0961, 1.2666e-13, 1.1524, 3.9520e-15]
+Which corresponds to 83.23 grams of spinach, 9.61 grams of sunflower seeds, and 115.24 grams of chickpeas.
+This has a total cost of .5*.8323 + .45*.0961 + .95*1.1524 = $1.56.
+
+
+iii. How many calories are in the low cost salad?
+Energy = 40*.8323 + 585*.0961 + 164*1.1524 = 278.5041 calories.
+
+
+Part C: Compare the results from part A and B. Veronica's goal is to create a Very Veggie Salad that is both low calorie and low cost. She would like to sell the salad for $5.00 and still have a profit of at least $3.00. However if she can advertise that the salad has under 250 calories then she may be able to sell more.
+
+i. Suggest some possible ways that she select a combination of ingredients that is "near optimal" for both objective. This is a type of multi-objective optimization.
+
+Note that the minimum calorie salad found in part A has 114.752 calories and costs $2.33.
+Note that the minimum cost salad found in part B has 278.5041 calories and costs $1.56.
+
+Considering the constraints added in part C, we have two viable options for creating an optimized salad:
+Option A: Minimize the cost for a salad that has less than 250 calories.
+Modifying our code in part B by adding an additional inequality to ensure that the amount of calories is at most 250, as below:
+MATLAB:
+A = [-0.85 -1.62 -2.86 -0.93 -23.4 -16 -9 0
+     -0.33 -0.20 -0.39 -0.24 -48.7 -5 -2.6 -100
+     0.33 0.20 0.39 0.24 48.7 5 2.6 100
+     -4.64 -2.37 -3.63 -9.58 -15 -3 -27 0
+     9 28 65 69 3.8 120 78 0
+     0.4 -0.6 -0.6 0.4 0.4 0.4 0.4 0.4
+     21 16 40 41 585 120 164 884];
+   
+b = [-15 -2 8 -4 200 0 250];
+
+f = [1 .75 .5 .5 .45 2.15 .95 2];
+
+Aeq = [];
+beq = [];
+
+lb = [0, 0, 0, 0, 0, 0, 0, 0];
+ub = [];
+
+x = linprog(f,A,b,Aeq,beq,lb,ub);
+
+We get that x = [4.2813e-14, 1.2122e-13, 0.7620, 7.3806e-14, 0.0938, 0.1689, 0.8802, 4.8830e-15]
+Which corresponds to a salad with 76.20 grams of spinach, 9.38 grams of sunflower seeds, 16.89 grams of smoked tofu, and 88.02 grams of chickpeas.
+This salad has 249.9738 calories, and costs $1.63
+
+
+Option B: Minimize the amount of calories for a salad that costs at most $2.00 to make (so that when she sells for $5, she still makes a profit of $3)
+Modifying our code in part A by adding an additional inequality to ensure that the cost is at most $2.00, as below:
+MATLAB:
+A = [-0.85 -1.62 -2.86 -0.93 -23.4 -16 -9 0
+     -0.33 -0.20 -0.39 -0.24 -48.7 -5 -2.6 -100
+     0.33 0.20 0.39 0.24 48.7 5 2.6 100
+     -4.64 -2.37 -3.63 -9.58 -15 -3 -27 0
+     9 28 65 69 3.8 120 78 0
+     0.4 -0.6 -0.6 0.4 0.4 0.4 0.4 0.4
+     1 .75 .5 .5 .45 2.15 .95 2];
+   
+b = [-15 -2 8 -4 200 0 2];
+
+f = [21 16 40 41 585 120 164 884];
+
+Aeq = [];
+beq = [];
+
+lb = [0, 0, 0, 0, 0, 0, 0, 0];
+ub = [];
+
+x = linprog(f,A,b,Aeq,beq,lb,ub);
+
+We get that x = [4.2810e-15, 1.3774e-14, 0.5503, 5.4151e-15, 0.0294, 0.7961, 5.6316e-14, 5.6112e-16]
+Which corresponds to a salad with 55.03 grams of spinach, 2.94 grams of sunflower seeds, and 79.61 grams of smoked tofu.
+This salad has 134.743 calories and costs $2.00.
+
+
+ii. What combination of ingredient would you suggest and what is the associated cost and calorie?
+We would suggest a salad with 76.20 grams of spinach, 9.38 grams of sunflower seeds, 16.89 grams of smoked tofu, and 88.02 grams of chickpeas.
+This has 249.9738 calores and costs $1.63. If sold at $5, it has a profit of $3.37 per salad sold.
+
+
+iii. From a business standpoint, we can expect that her advertisement is going to have the same effect if the salad has 210 calories as it would if it had 249.99, because she is specifically advertising that her salad "has under 250 calories". Given this, it is far better to go with the salad in option A, because it is able to leverage additional profit per salad over B, even though the two salads would attract the exact same amount of business. Hence, we can safely conclude that our salad is optimal for maximizing profit with the additional constraints given in Part C.
+
+Furthermore, this salad is almost assuredly better from a business standpoint than the minimum cost salad because of the extra boost from advertisement. The minimum cost salad (which cost $1.56, for a profit per salad of $3.44 per salad sold) only leverages an additional 7 cents per salad over the optimal profit salad found in part C. Since the profit ratio of the minimum cost salad (part B) to the optimal profit salad (part C) is 3.44/3.37 = 1.02, we can conclude that the optimal profit salad in part C will always produce more total profit than the minimum cost salad in part B, assuming that the advertising campaign described in C produces more than a 2.08% increase in salads sold.
