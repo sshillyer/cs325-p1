@@ -1,0 +1,44 @@
+Note: LINDO was used to solve all four parts of Problem 3.
+
+a) As found in lindo_p3a_sol.txt:
+
+da = 0
+db = 2
+dc = 3
+dd = 3
+de = 9
+df = 6
+dg = 8
+dh = 9
+di = 8
+dj = 10
+dk = 14
+dl = 15
+dm = 17
+
+
+b) The result will be the same, except that dz will be unbounded.  This is shown in lindo_p3b_sol.txt.  It was unnecessary and undesirable to add a constraint for dz, because since there was a path from a to all other vertices, there could be no path from any vertex to z.
+
+
+c) This problem is essentially a single-source shortest path problem if we simply reverse the direction of each edge but leave its weight the same.  lindo_p3c.ltx shows how this could be represented as a linear program.  In this case, we let dm = 0.  The results were as follows, from lindo_p3c_sol.txt:
+
+da = 17
+db = 15
+dc = 15
+dd = 12
+de = 19
+df = 11
+dg = 14
+dh = 14
+di = 9
+dj = 7
+dk = 10
+dl = 2
+dm = 0
+
+
+d) This problem could be solved by finding the shortest path to vertex i from each vertex, finding the shortest path from vertex i to each vertex, and then adding each pair together.  To find the shortest path through vertex i from vertex a to vertex d, for example: add the shortest path length from a to i to the shortest path length from i to d.
+
+The results of finding the shortest path from each vertex to i are in the file lindo_p3d2_sol.txt.  The results of finding the shortest path to each vertex from i are in the file lindo_p3d1_sol.txt.
+
+The Python script p3d_sol.py was used to generate the table of sums that can be found in p3d_vertex_to_vertex_table.pdf.
