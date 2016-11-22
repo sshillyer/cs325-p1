@@ -3,10 +3,12 @@ from City import *
 from euc_distance import *
 
 class Instance(object):
-    def __init__(self):
+    def __init__(self, source_filename):
         self.tour_length = 0
         self.num_cities = 0
         self.cities = []
+        self.source_filename = source_filename
+        self.output_filename = source_filename + '.tour'
 
     def __str__(self):
         lenString = str(self.tour_length) + '\n'
@@ -29,3 +31,7 @@ class Instance(object):
             cities_string += str(city.get_label())
             cities_string += '\n'
         return cities_string
+
+    def write_solution_to_file(self):
+        with open(self.output_filename, 'w') as out_file:
+            out_file.write(self.__str__())

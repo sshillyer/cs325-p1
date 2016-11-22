@@ -1,7 +1,7 @@
 from Instance import *
 from City import *
 
-sol = Instance()
+sol = Instance('tsp_example_1.txt')
 print(sol)
 
 city1 = City(1,5,10)
@@ -14,3 +14,5 @@ sol.add_city_to_tour(city2)
 print(sol)
 sol.add_city_to_tour(city3)
 print(sol)
+
+sol.write_solution_to_file()
