@@ -1,4 +1,4 @@
-from city import *
+from City import *
 from euc_distance import *
 
 # Simple function to test that we get the correct result

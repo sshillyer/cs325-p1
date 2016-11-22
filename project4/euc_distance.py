@@ -1,4 +1,4 @@
-from city import *
+from City import *
 from math import sqrt
 
 # function to return the distance between two points on Euclidian plain

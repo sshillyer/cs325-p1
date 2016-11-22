@@ -1,4 +1,4 @@
-from city import *
+from City import *
 
 
 # Read data from an input file and store into a list of City objects

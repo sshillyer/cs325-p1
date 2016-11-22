@@ -5,4 +5,11 @@ class City(object):
         self.y = y
 
     def __str__(self):
-        return self.label + " " + self.x + " " + self.y
+        '''
+        Override string method for easy printing of city information
+        :return:
+        '''
+        return str(self.label) + " " + str(self.x) + " " + str(self.y)
+
+    def get_label(self):
+        return self.label
