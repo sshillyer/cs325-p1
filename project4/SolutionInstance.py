@@ -27,10 +27,15 @@ class SolutionInstance(object):
 
         self.num_cities = self.num_cities + 1
 
-    def build_solution_from_array(self, cities):
+    def build_solution_from_array(self, cities, graph):
         for city in cities:
-            self.add_city_to_tour(city)
+            self.add_city_to_tour(city, graph)
+        self.complete_tour(graph)
 
+    def complete_tour(self, graph):
+        distance_from_finish_to_start = graph.get_distance_between_vertices(self.cities[self.num_cities-1], self.cities[0])
+        print("Adding distance from start to finish: " + str(distance_from_finish_to_start));
+        self.tour_length = self.tour_length + distance_from_finish_to_start
 
     def get_cities_string(self):
         cities_string = ''

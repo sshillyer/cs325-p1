@@ -20,13 +20,13 @@ def execute_tsp_algorithm_from_file(input_filename, algorithm):
 
     # Feed cities into graph and build matrix
     graph = TspGraphMatrix(cities)
-    graph.print_matrix()
+    # graph.print_matrix()
 
     # Pass the array from algorithm solution set to the SolutionInstance constructor
     solution = SolutionInstance(input_filename)
     solution_cities = algorithm(graph)
-    for city in solution_cities:
-        solution.add_city_to_tour(city, graph)
+    solution.build_solution_from_array(solution_cities, graph)
+
 
     # Create the file
     solution.write_solution_to_file()
