@@ -1,6 +1,7 @@
 # An instance /  certificate solution to the TSP
 from City import *
 from tsp_helper_functions import *
+from TspGraphMatrix import *
 
 class SolutionInstance(object):
     def __init__(self, source_filename):
@@ -16,12 +17,13 @@ class SolutionInstance(object):
 
         return (lenString + cities_string)
 
-    def add_city_to_tour(self, city):
+    def add_city_to_tour(self, city, graph):
         self.cities.append(city)
 
         if self.num_cities > 0:
             last_city = self.cities[self.num_cities-1]  # get the last city in the List
-            self.tour_length = self.tour_length + euc_distance(city, last_city)
+            # self.tour_length = self.tour_length + euc_distance(city, last_city)
+            self.tour_length = self.tour_length + graph.get_distance_between_vertices(city, last_city)
 
         self.num_cities = self.num_cities + 1
 

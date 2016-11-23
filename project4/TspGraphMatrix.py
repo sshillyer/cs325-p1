@@ -27,3 +27,8 @@ class TspGraphMatrix(object):
             print (str(i) + '\t')
         for row in self.AdjMatrix:
             print(row)
+
+    def get_distance_between_vertices(self, v, u):
+        u = u.index
+        v = v.index
+        return self.AdjMatrix[u][v]
