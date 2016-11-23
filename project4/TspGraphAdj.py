@@ -1,7 +1,3 @@
-from City import *
-from euc_distance import *
-from Edge import *
-
 class TspGraphAdj(object):
     def __init__(self):
         self.V = []         # Vertices, aka, cities

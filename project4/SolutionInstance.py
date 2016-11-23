@@ -1,14 +1,14 @@
 # An instance /  certificate solution to the TSP
 from City import *
-from euc_distance import *
+from tsp_helper_functions import *
 
-class Instance(object):
+class SolutionInstance(object):
     def __init__(self, source_filename):
         self.tour_length = 0
         self.num_cities = 0
         self.cities = []
         self.source_filename = source_filename
-        self.output_filename = source_filename + '.tour'
+        self.output_filename = str(source_filename) + '.tour'
 
     def __str__(self):
         lenString = str(self.tour_length) + '\n'
@@ -24,6 +24,11 @@ class Instance(object):
             self.tour_length = self.tour_length + euc_distance(city, last_city)
 
         self.num_cities = self.num_cities + 1
+
+    def build_solution_from_array(self, cities):
+        for city in cities:
+            self.add_city_to_tour(city)
+
 
     def get_cities_string(self):
         cities_string = ''

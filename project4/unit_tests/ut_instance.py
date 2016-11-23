@@ -1,18 +1,10 @@
-from Instance import *
-from City import *
+from SolutionInstance import *
+from tsp_helper_functions import *
 
-sol = Instance('tsp_example_1.txt')
-print(sol)
+sol = SolutionInstance('tsp_example_1.txt')
+cities = read_city_data_from_file("../provided/tsp_example_1.txt")
 
-city1 = City(1,5,10)
-city2 = City(2,10,10)
-city3 = City(3, 15, 30)
-sol.add_city_to_tour(city1)
-print(sol)
-# expect length of 0 and the one city
-sol.add_city_to_tour(city2)
-print(sol)
-sol.add_city_to_tour(city3)
-print(sol)
+for city in cities:
+    sol.add_city_to_tour(city)
 
 sol.write_solution_to_file()

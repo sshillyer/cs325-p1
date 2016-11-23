@@ -1,5 +1,6 @@
-from euc_distance import *
+# UNUSED PRESENTLY
 
+from tsp_helper_functions import *
 
 class Edge(object):
     def __init__(self, u, v):

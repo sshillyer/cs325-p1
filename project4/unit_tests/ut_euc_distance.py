@@ -1,5 +1,5 @@
 from City import *
-from euc_distance import *
+from tsp_helper_functions import *
 
 # Simple function to test that we get the correct result
 def test_euc(x1, y1, x2, y2, expected):
