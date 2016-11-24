@@ -8,8 +8,6 @@ import sys
 def signal_handler(signal, frame):
     dumpOut(minimum, bestTraversal)
     sys.exit(0)
-signal.signal(signal.SIGINT, signal_handler)
-signal.signal(signal.SIGTERM, signal_handler)
 
 def primsMST(cities, graph):
     #Choose start vertex u from cities
@@ -160,6 +158,9 @@ traversalOrder = dfsTraversal(cities,graph)
 minimum = calculateTraversalDistance(traversalOrder)
 bestTraversal = traversalOrder
 print("Distance of preorder traversal: " + str(minimum))
+#Ok to catch signals to dump if we make it this far.
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 for i in range(len(cities)):
     primsMST(cities,graph)
