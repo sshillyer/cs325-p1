@@ -6,7 +6,9 @@ import signal
 import sys
 
 def signal_handler(signal, frame):
-    dumpOut(minimum, bestTraversal)
+    print("Signal Received, dumping best result so far to", outputFilename)
+    dumpToFile(minimum, bestTraversal, outputFilename)
+    #dumpOut(minimum, bestTraversal)
     sys.exit(0)
 
 def primsMST(cities, graph):
@@ -126,7 +128,7 @@ def iterateTwoOpt(cities,graph,times,initialTraversal):
         previousBest = currentBest
         previousTime = calculateTraversalDistance(previousBest)
         currentBest = twoOpt(cities,graph,previousBest)
-        print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
+        #print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
         if previousTime == calculateTraversalDistance(currentBest):
             break        
     return currentBest
@@ -151,14 +153,30 @@ def dumpOut(minimum, bestTraversal):
     for i in bestTraversal:
         print(i.label)
 
-cities = read_city_data_from_file("./provided/tsp_example_1.txt")
+def dumpToFile(minimum, bestTraversal, filename):
+    text_file = open(filename, "w")
+    print(str(minimum), file = text_file)
+    for i in bestTraversal:
+        print(i.label, file = text_file)
+    text_file.close()
+
+inputFilename = ""
+if len(sys.argv)==1:
+    print("Usage: python3 primsRefactor.py inputFilename")
+    sys.exit(0)
+else:
+    inputFilename = sys.argv[1]
+outputFilename = inputFilename + ".tour"
+
+cities = read_city_data_from_file(inputFilename)
 graph = TspGraphMatrix(cities)
 MST = primsMST(cities,graph)
 traversalOrder = dfsTraversal(cities,graph)
 minimum = calculateTraversalDistance(traversalOrder)
 bestTraversal = traversalOrder
-print("Distance of preorder traversal: " + str(minimum))
+#print("Distance of preorder traversal: " + str(minimum))
 #Ok to catch signals to dump if we make it this far.
+
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 
@@ -171,8 +189,9 @@ for i in range(len(cities)):
     if optimizedDistance < minimum:
         minimum = optimizedDistance
         bestTraversal = optimized
-    print("Final optimized distance rotation", str(i+1), ": ", str(optimizedDistance))
-    print("Best so far: ", str(minimum))
+    #print("Final optimized distance rotation", str(i+1), ": ", str(optimizedDistance))
+    #print("Best so far: ", str(minimum))
 
-print("Final Results: ")
-dumpOut(minimum, bestTraversal)
+dumpToFile(minimum, bestTraversal, outputFilename)
+#print("Final Results: ")
+#dumpOut(minimum, bestTraversal)
