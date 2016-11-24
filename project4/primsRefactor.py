@@ -118,7 +118,7 @@ def twoOpt(cities,graph,traversalToOptimize):
             #Rebuild so we have a current preorderTraversal
             newBest = buildTraversal(cities,graph)
             currentBest = newBest
-            #print("Update: " + str(calculateTraversalDistance(currentBest)))
+            print("Update: " + str(calculateTraversalDistance(currentBest)))
 
     return currentBest
 
@@ -128,7 +128,7 @@ def iterateTwoOpt(cities,graph,times,initialTraversal):
         previousBest = currentBest
         previousTime = calculateTraversalDistance(previousBest)
         currentBest = twoOpt(cities,graph,previousBest)
-        #print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
+        print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
         if previousTime == calculateTraversalDistance(currentBest):
             break        
     return currentBest
@@ -146,7 +146,8 @@ def buildTraversal(cities,graph):
     return traversalList
 
 def rotateCities(cities, n):
-    return cities[n:] + cities[:n]
+    r = n%len(cities)
+    return cities[r:] + cities[:r]
 
 def dumpOut(minimum, bestTraversal):
     print(str(minimum))
@@ -160,6 +161,8 @@ def dumpToFile(minimum, bestTraversal, filename):
         print(i.label, file = text_file)
     text_file.close()
 
+sys.setrecursionlimit(10**6)
+#print(sys.getrecursionlimit())
 inputFilename = ""
 if len(sys.argv)==1:
     print("Usage: python3 primsRefactor.py inputFilename")
@@ -183,14 +186,17 @@ signal.signal(signal.SIGTERM, signal_handler)
 for i in range(len(cities)):
     primsMST(cities,graph)
     dfsTraversal(cities,graph)
-    cities = rotateCities(cities,1)
+    #1000003 is prime, so len(cities)%1000003 is relatively prime to
+    #len(cities) for len(cities)<1000003
+    #This assures that all the starting points get tested
+    cities = rotateCities(cities,1000003)
     optimized = iterateTwoOpt(cities,graph, 50, traversalOrder)
     optimizedDistance = calculateTraversalDistance(optimized)
     if optimizedDistance < minimum:
         minimum = optimizedDistance
         bestTraversal = optimized
-    #print("Final optimized distance rotation", str(i+1), ": ", str(optimizedDistance))
-    #print("Best so far: ", str(minimum))
+    print("Final optimized distance rotation", str(i+1), ": ", str(optimizedDistance))
+    print("Best so far: ", str(minimum))
 
 dumpToFile(minimum, bestTraversal, outputFilename)
 #print("Final Results: ")
