@@ -2,6 +2,14 @@
 
 from tsp_helper_functions import *
 from Edge import *
+import signal
+import sys
+
+def signal_handler(signal, frame):
+    dumpOut(minimum, bestTraversal)
+    sys.exit(0)
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 def primsMST(cities, graph):
     #Choose start vertex u from cities
@@ -54,8 +62,6 @@ def dfsTraversal(cities, graph):
         #Assign child to next element in preorder Traversal
         preorderTraversal[i].child = preorderTraversal[(i+1)%len(preorderTraversal)]
 
-    #Convert preorderTraversal to an edge list
-    preorderTraversal = buildEdgeList(cities,graph)
     return preorderTraversal
 
 #Run in dfsTraversal
@@ -68,9 +74,8 @@ def DFS(currentNode, preorderTraversal):
 #Run with a list of edges to calculate the distance of all edges
 def calculateTraversalDistance(traversalOrder):
     totalDistance = 0
-    for e in traversalOrder:
-        #print(e.u.label + " " + e.v.label)
-        totalDistance += e.distance
+    for v in traversalOrder:
+        totalDistance += graph.get_distance_between_vertices(v,v.child)
     return totalDistance
 
 #
@@ -111,8 +116,9 @@ def twoOpt(cities,graph,traversalToOptimize):
             i.child = j
 
             #Rebuild so we have a current preorderTraversal
-            newBest = buildEdgeList(cities,graph)
+            newBest = buildTraversal(cities,graph)
             currentBest = newBest
+            #print("Update: " + str(calculateTraversalDistance(currentBest)))
 
     return currentBest
 
@@ -120,32 +126,52 @@ def iterateTwoOpt(cities,graph,times,initialTraversal):
     currentBest = initialTraversal
     for i in range(times):
         previousBest = currentBest
+        previousTime = calculateTraversalDistance(previousBest)
         currentBest = twoOpt(cities,graph,previousBest)
         print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
-        if calculateTraversalDistance(previousBest) == calculateTraversalDistance(currentBest):
+        if previousTime == calculateTraversalDistance(currentBest):
             break        
     return currentBest
         
 
 #Only run if cities parent/child relationship forms a walk.
 #This happens first during dfsTraversal
-def buildEdgeList(cities,graph):
-    edgeList = []
-    edgeList.append(Edge(cities[0],cities[0].child, graph.get_distance_between_vertices(cities[0],cities[0].child)))
+def buildTraversal(cities,graph):
+    traversalList = []
+    traversalList.append(cities[0])
     currNode = cities[0].child
     while currNode!=cities[0]:
-        edgeList.append(Edge(currNode,currNode.child,graph.get_distance_between_vertices(currNode,currNode.child)))
+        traversalList.append(currNode)
         currNode = currNode.child
-    return edgeList
+    return traversalList
 
+def rotateCities(cities, n):
+    return cities[n:] + cities[:n]
 
-cities = read_city_data_from_file("./provided/tsp_example_3.txt")
+def dumpOut(minimum, bestTraversal):
+    print(str(minimum))
+    for i in bestTraversal:
+        print(i.label)
+
+cities = read_city_data_from_file("./provided/tsp_example_1.txt")
 graph = TspGraphMatrix(cities)
 MST = primsMST(cities,graph)
 traversalOrder = dfsTraversal(cities,graph)
-optimized = iterateTwoOpt(cities,graph, 50, traversalOrder)
-print("Distance of preorder traversal: " + str(calculateTraversalDistance(traversalOrder)))
-print("Final optimized distance: ", str(calculateTraversalDistance(optimized)))
-#print("Two opt iterated through all combinations once: " + str(calculateTraversalDistance(optimize1)))
-#print("Two opt iterated through all combinations twice: " + str(calculateTraversalDistance(optimize2)))
-#print("Two opt iterated through all combinations thrice: " + str(calculateTraversalDistance(optimize3)))
+minimum = calculateTraversalDistance(traversalOrder)
+bestTraversal = traversalOrder
+print("Distance of preorder traversal: " + str(minimum))
+
+for i in range(len(cities)):
+    primsMST(cities,graph)
+    dfsTraversal(cities,graph)
+    cities = rotateCities(cities,1)
+    optimized = iterateTwoOpt(cities,graph, 50, traversalOrder)
+    optimizedDistance = calculateTraversalDistance(optimized)
+    if optimizedDistance < minimum:
+        minimum = optimizedDistance
+        bestTraversal = optimized
+    print("Final optimized distance rotation", str(i+1), ": ", str(optimizedDistance))
+    print("Best so far: ", str(minimum))
+
+print("Final Results: ")
+dumpOut(minimum, bestTraversal)
