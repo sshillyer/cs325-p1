@@ -1,7 +1,6 @@
 #Prims MST algorithm pseudocode researched at: people.cs.pitt.edu/~mnugent/notes/fall2012/prim,%20tsp%20approx.pdf
 
 from tsp_helper_functions import *
-from Edge import *
 import signal
 import sys
 
@@ -39,13 +38,11 @@ def primsMST(cities, graph):
         #print("Connection " + str(i+1) + ": " + str(minV.priority))
         minV.priority = -1
         minV.parent.child.append(minV)
-        MST.append(Edge(minV,minV.parent,graph.get_distance_between_vertices(minV,minV.parent)))
         #Check to see if the path through V is closer - updates the pQueue
         for v in cities:
             if v.priority > graph.get_distance_between_vertices(minV, v):
                 v.priority = graph.get_distance_between_vertices(minV, v)
                 v.parent = minV
-    return MST
 
 #Run after primsMST
 def dfsTraversal(cities, graph):
@@ -116,10 +113,11 @@ def twoOpt(cities,graph,traversalToOptimize):
             i.child = j
 
             #Rebuild so we have a current preorderTraversal
-            newBest = buildTraversal(cities,graph)
-            currentBest = newBest
-            print("Update: " + str(calculateTraversalDistance(currentBest)))
+            #newBest = buildTraversal(cities,graph)
+            #currentBest = newBest
+            #print("Update: " + str(calculateTraversalDistance(currentBest)))
 
+    currentBest = buildTraversal(cities,graph)
     return currentBest
 
 def iterateTwoOpt(cities,graph,times,initialTraversal):
@@ -173,7 +171,7 @@ outputFilename = inputFilename + ".tour"
 
 cities = read_city_data_from_file(inputFilename)
 graph = TspGraphMatrix(cities)
-MST = primsMST(cities,graph)
+primsMST(cities,graph)
 traversalOrder = dfsTraversal(cities,graph)
 minimum = calculateTraversalDistance(traversalOrder)
 bestTraversal = traversalOrder
