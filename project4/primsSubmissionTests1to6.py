@@ -233,11 +233,11 @@ if(len(cities)>250):
     cityRot = 25
     rot = 379
 if(len(cities)>500):
-    cityRot = 2
-    rot = 541
+    cityRot = 10
+    rot = 255
 if(len(cities)>1000):
     cityRot = 0
-    rot = 17
+    rot = 1617
 if(len(cities)>2000):
     cityRot = 0
     rot = 0
