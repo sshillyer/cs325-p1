@@ -9,17 +9,29 @@ readme.txt
 Usage
 ----------------------------------------
 To generate our best (time-unbounded) solutions, execute the following
-command(s):
+command(s) (WARNING: this may take a number of years to complete
+for a full run, and may find better solutions as a result):
 
-*
-*
-*
+* python3 primsSubmissionTests1to6.py test-input-1.txt
+* python3 primsSubmissionTests1to6.py test-input-2.txt
+* python3 primsSubmissionTests1to6.py test-input-3.txt
+* python3 primsSubmissionTests1to6.py test-input-4.txt
+* python3 primsSubmissionTests1to6.py test-input-5.txt
+* python3 primsSubmissionTests1to6.py test-input-6.txt
+* python3 primsSubmissionTest7.py test-input-7.txt
+* python3 primsSubmissionTests1to6.py tsp_example_1.txt
+* python3 primsSubmissionTests1to6.py tsp_example_2.txt
+* python3 primsSubmissionTests1to6.py tsp_example_3.txt
 
 TO generate our competition solutions, execute the following commands:
 
-*
-*
-*
+* python watch.py python3 primsSubmissionTests1to6.py test-input-1.txt
+* python watch.py python3 primsSubmissionTests1to6.py test-input-2.txt
+* python watch.py python3 primsSubmissionTests1to6.py test-input-3.txt
+* python watch.py python3 primsSubmissionTests1to6.py test-input-4.txt
+* python watch.py python3 primsSubmissionTests1to6.py test-input-5.txt
+* python watch.py python3 primsSubmissionTests1to6.py test-input-6.txt
+* python watch.py python3 primsSubmissionTest7.py test-input-7.txt
 
 
 ----------------------------------------
@@ -43,14 +55,23 @@ File Descriptions
 		Class that stores the label, index, and x/y coordinates for
 		cities; simplies algorithms.
 
-	primsRefactor.py
-		TODO
-
 	primsSubmissionTest7.py
-		TODO
+		Alg that calculates a MST, Depth First search to create a
+                preorder traversal, and attempts to find some quick 
+                improvments when using large numbers of city inputs 
+                under strict time limits. Use for test-input-7.txt
 
 	primsSubmissionTests1to6.py
-		TODO
+		Alg that calculates a MST, Depth First search to create
+                a preorder traversal, and finds improvements based on that
+                traversal. If finishes within time limit, pivots to a
+                different starting city to construct MST and pivots to
+                a different starting city for optimizing the preorder
+                traversal, eventually testing all combinations of these
+                two starting points. If no time limit, will run until
+                keyboard interrupt is received, or until all starting
+                city combinations are optimized. Use for test-input-n.txt
+                for n from 1 to 6, or tsp_example_n.txt for n from 1 to 3.
 
 	tsp_helper_functions.py
 		Functions to read the city data from a file, build the Graph,
