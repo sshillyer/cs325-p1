@@ -8,9 +8,14 @@ readme.txt
 ----------------------------------------
 Usage
 ----------------------------------------
+We have included the original city text files in the root directory for
+ease of testing. These commands will output a corresponding .txt.tour
+file in the root directory.
+
 To generate our best (time-unbounded) solutions, execute the following
-command(s) (WARNING: this may take a number of years to complete
-for a full run, and may find better solutions as a result):
+command(s) in the root directory. 
+(WARNING: this may take a number of years to complete for a full run, 
+and may find better solutions as a result):
 
 * python3 primsSubmissionTests1to6.py test-input-1.txt
 * python3 primsSubmissionTests1to6.py test-input-2.txt
@@ -23,7 +28,8 @@ for a full run, and may find better solutions as a result):
 * python3 primsSubmissionTests1to6.py tsp_example_2.txt
 * python3 primsSubmissionTests1to6.py tsp_example_3.txt
 
-TO generate our competition solutions, execute the following commands:
+TO generate our competition solutions, execute the following commands
+in the root directory:
 
 * python watch.py python3 primsSubmissionTests1to6.py test-input-1.txt
 * python watch.py python3 primsSubmissionTests1to6.py test-input-2.txt
@@ -89,8 +95,11 @@ TSP Verifier Commands
 ----------------------------------------
 
 The TSP Verifier (tsp-verifier.py) and TPSAllVisisted.py and watch.py
-files are in our two solutions files for easy testing. You can copy-paste
-the commands below to verify the solutions.
+files are in our two solutions files and in the root directory 
+for easy testing. You can copy-paste the commands below to verify 
+the solutions, in the solutions directory with the pre-submitted
+solutions, or in the root directory after computing a .txt.tour file
+as directed above.
 
 (For both folders)
 python tsp-verifier.py test-input-1.txt test-input-1.txt.tour
