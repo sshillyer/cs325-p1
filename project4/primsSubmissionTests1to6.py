@@ -233,8 +233,8 @@ if(len(cities)>250):
     cityRot = 25
     rot = 379
 if(len(cities)>500):
-    cityRot = 10
-    rot = 255
+    cityRot = 527
+    rot = 133
 if(len(cities)>1000):
     cityRot = 0
     rot = 1617
@@ -251,8 +251,9 @@ signal.signal(signal.SIGTERM, signal_handler)
 #Loop through every combination of city rotations and traversal rotations
 #This looks for the best local minimum we can find with our alg
 #Rotate through all starting cities for building a MST
+cities = rotateCities(cities,cityRot)
 for i in range(len(cities)):
-    cities = rotateCities(cities,1+cityRot)
+    cities = rotateCities(cities,1)
     #Rotate through all starting traversal points for optimizing 2opt
     for j in range(len(traversalOrder)):
         primsMST(cities,graph)

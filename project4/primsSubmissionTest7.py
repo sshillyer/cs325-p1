@@ -76,62 +76,43 @@ def calculateTraversalDistance(traversalOrder):
     return totalDistance
 
 #
-def twoOpt(cities,graph,traversalToOptimize):
-    currentBest = traversalToOptimize
-    for i in cities:
-        for j in cities:
-            #check if they're the same point or adjacent points to skip.
-            if i == j:
-                continue
-            if i.child == j:
-                continue
-            if i == j.child:
-                continue
+def twoOpt(minimum, i, j, graph, traversalToOptimize):
+    #check if they're the same point or adjacent points to skip.
+    if i == j:
+        return minimum, traversalToOptimize
+    if i.child == j:
+        return minimum, traversalToOptimize
+    if i == j.child:
+        return minimum, traversalToOptimize
 
-            #skip if not better
-            original = graph.get_distance_between_vertices(i, i.child) + graph.get_distance_between_vertices(j, j.child)
-            improvement = graph.get_distance_between_vertices(i,j) + graph.get_distance_between_vertices(i.child, j.child)
-            if improvement >= original:
-                continue
+    #skip if not better
+    original = graph.get_distance_between_vertices(i, i.child) + graph.get_distance_between_vertices(j, j.child)
+    improvement = graph.get_distance_between_vertices(i,j) + graph.get_distance_between_vertices(i.child, j.child)
+    if improvement >= original:
+        return minimum, traversalToOptimize
 
-            #reconstruct path if better
-            city1childchildtemp = i.child.child
-            i.child.child = j.child
-            j.child.parent = i.child
+    newmin = minimum - original + improvement
 
-            currcity = j
-            while 1:
-                if currcity == i.child:
-                    currcity.parent = city1childchildtemp
-                    break
-                temp = currcity.child
-                currcity.child = currcity.parent
-                currcity.parent = temp
-                currcity = currcity.child
+    #reconstruct path if better
+    city1childchildtemp = i.child.child
+    i.child.child = j.child
+    j.child.parent = i.child
 
-            j.parent = i
-            i.child = j
+    currcity = j
+    while 1:
+        if currcity == i.child:
+            currcity.parent = city1childchildtemp
+            break
+        temp = currcity.child
+        currcity.child = currcity.parent
+        currcity.parent = temp
+        currcity = currcity.child
 
-            traversalToOptimize = buildTraversal(cities,graph)
-
-            #Rebuild so we have a current preorderTraversal
-            #newBest = buildTraversal(cities,graph)
-            #currentBest = newBest
-            #print("Update: " + str(calculateTraversalDistance(currentBest)))
+    j.parent = i
+    i.child = j
 
     currentBest = buildTraversal(cities,graph)
-    return currentBest
-
-def iterateTwoOpt(cities,graph,times,initialTraversal):
-    currentBest = initialTraversal
-    for i in range(times):
-        previousBest = currentBest
-        previousTime = calculateTraversalDistance(previousBest)
-        currentBest = twoOpt(cities,graph,previousBest)
-        #print("Current best distance after " + str(i+1) + " iterations: " +str(calculateTraversalDistance(currentBest)))
-        if previousTime == calculateTraversalDistance(currentBest):
-            break        
-    return currentBest
+    return newmin, currentBest
         
 
 #Only run if cities parent/child relationship forms a walk.
@@ -155,7 +136,6 @@ def dumpOut(minimum, bestTraversal):
         print(i.label)
 
 def dumpToFile(minimum, bestTraversal, filename):
-    minimum = calculateTraversalDistance(bestTraversal)
     text_file = open(filename, "w")
     print(str(minimum), file = text_file)
     for i in bestTraversal:
@@ -178,26 +158,18 @@ primsMST(cities,graph)
 traversalOrder = dfsTraversal(cities,graph)
 minimum = calculateTraversalDistance(traversalOrder)
 bestTraversal = traversalOrder
-#Stores the i number for the rotation of the best initial rotation for
-#the traversal number
-bestRot = None
 #print("Distance of preorder traversal: " + str(minimum))
 #Ok to catch signals to dump if we make it this far.
 
 signal.signal(signal.SIGINT, signal_handler)
 signal.signal(signal.SIGTERM, signal_handler)
 
-#cities = rotateCities(cities, 0)
-primsMST(cities,graph)
-traversalOrder = dfsTraversal(cities,graph)
-#traversalOrder = rotateCities(traversalOrder,0)
-optimized = iterateTwoOpt(traversalOrder,graph, 50, traversalOrder)
-optimizedDistance = calculateTraversalDistance(optimized)
-if optimizedDistance < minimum:
-    minimum = optimizedDistance
-    bestTraversal = optimized
-    #print("Final optimized distance: ", str(optimizedDistance))
-dumpToFile(minimum, bestTraversal, outputFilename)
+for k in range(50):
+    for i in cities:
+        for j in cities:
+            minimum, bestTraversal = twoOpt(minimum, i, j, graph, bestTraversal)
+
+dumpToFile(bestTraversal, outputFilename)
 #print(bestTraversal[0].label)
 #print("Final Results: ")
 #dumpOut(minimum, bestTraversal)
